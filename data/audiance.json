@@ -1,0 +1,56 @@
+{
+    "audiance": {
+        "size" : 22300,
+        "topics": [
+          {
+            "id": 0,
+            "label": "Finance & Business",
+            "xp": 49
+          },
+          {
+            "id": 1,
+            "label": "World Affairs",
+            "xp": 16
+          },
+          {
+            "id": 2,
+            "label": "Politics",
+            "xp": 22
+          },
+          {
+            "id": 3,
+            "label": "Sports",
+            "xp": 4
+          },
+
+          {
+            "id": 7,
+            "label": "Entertainment",
+            "xp": 55
+          },
+          {
+            "id": 4,
+            "label": "Culture & Arts",
+            "xp": 13
+          },
+          {
+            "id": 5,
+            "label": "Science & Technology",
+            "xp": 88
+          },
+          {
+            "id": 6,
+            "label": "Health & Education",
+            "xp": 34
+          }
+        ],
+        "poltical" : {
+        	"left" : 0,
+        	"right": 40
+        },
+        "averageSpend" : 0,
+        "trust" : 10,
+        "integraty" : 10,
+        "expectedQuality" : 23
+    }
+}

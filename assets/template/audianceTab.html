@@ -1,0 +1,18 @@
+<tabs class="group">
+  <li ng-class="{'active' : tabs.audiance == 'overview' }" ng-click="tabs.audiance = 'overview'"><a>Overview</a></li>
+  <li ng-class="{'active' : tabs.audiance == 'demographics' }" ng-click="tabs.audiance = 'demographics'"><a>Insight</a></li>
+  <li ng-class="{'active' : tabs.audiance == 'trends' }" ng-click="tabs.audiance = 'trends'"> <a>Trends</a></li>
+</tabs>
+
+<div ng-show="tabs.audiance == 'overview'">
+  <h3><u>AUDIANCE</u></h3>
+
+</div>
+
+<div ng-show="tabs.audiance == 'demographics'">
+    <h3><u>AUDIANCE DEMOGRAPHICS</u></h3>
+</div>
+
+<div ng-show="tabs.audiance == 'trends'">
+    <h3><u>AUDIANCE TRENDS</u></h3>
+</div>

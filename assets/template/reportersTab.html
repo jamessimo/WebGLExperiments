@@ -1,0 +1,73 @@
+<tabs class="group">
+  <li ng-class="{'active' : tabs.reporters == 'current' }" ng-click="tabs.reporters = 'current'"><a>Current</a></li>
+  <li ng-class="{'active' : tabs.reporters == 'hire' }" ng-click="tabs.reporters = 'hire'"><a>Hire</a></li>
+  <li ng-class="{'active' : tabs.reporters == 'past' }" ng-click="tabs.reporters = 'past'"> <a>Past</a></li>
+</tabs>
+
+<div ng-show="tabs.reporters == 'current'">
+  <h3><u>REPORTERS</u></h3>
+
+  <div ng-repeat="r in reporters track by $index">
+
+    <img width="45" ng-src="assets/img/default_avatar_male.jpg" />
+    <b>{{r.firstName}} {{r.secondName}}</b>
+    <br> Personallty: {{r.personallty.label}}</br>
+    <span class="tooltip" title="The ammount of money this reporter takes home every month">Wage: {{r.wage | currency:undefined:0}}</span>
+    </br>
+    Sources: {{r.sources}}</br>
+    Quality:
+    <progress value="{{r.quality}}" max="100"></progress>
+    <br> Political:
+    <progress class="pol-left" value="{{r.political.right}} " max="100"></progress>
+    <progress class="pol-right" value="{{r.political.left}} " max="100"></progress>
+
+    <ul style="padding: 0; list-style: none;">
+      <li ng-repeat="topic in r.skills">{{topic.label}}
+        <progress value="{{topic.xp}}" max="100"></progress>
+      </li>
+    </ul>
+
+    Curent Desk:
+    <div dropdown-select="r.skills" dropdown-model="r.desk" dropdown-item-label="label" dropdown-onchange="r.assignDesk(selected)">
+    </div>
+    <!--<select id="reporterSelect" ng-model="r.desk" class="reporterSelect"  ng-change="r.assignDesk(r.desk)"><option ng-repeat="topic in r.skills">{{topic.label}}</option></select>-->
+    </br>
+
+    Currently:
+    <span ng-if="r.article">Writing an article</span>
+    <span ng-if="!r.article">Idle</span>
+
+    <!-- ng-change="r.assignDesk(topic)
+
+  <div ng-show="r.article && r.progress != 100">Writing {{r.article.headline}} PROGRESS - {{r.progress}}/100%</div>
+  -->
+    <hr>
+
+    <br>
+
+
+    <!--<article ng-show="r.article && r.progress == 100">
+    <h3>{{r.article.headline}}</h3>
+    <ul>
+      <li>{{r.article.type.label}}</li>
+      <li>Quality {{r.article.quality}}</li>
+
+      <li>Trusthworthy {{r.article.trust}}</li>
+    </ul>
+    <progress value="{{r.article.quality}}" max="{{r.article.total}}"></progress>
+    <button ng-click="publish(r)">Print it!</button>
+    <button ng-click="startWriting(r,currentTopic)">Try Again</button>
+    <button ng-click="startWriting(r,currentTopic)">Touch it up</button>
+    <button ng-click="r.article = null">Trash</button>
+  </article>-->
+
+  </div>
+</div>
+
+<div ng-show="tabs.reporters == 'hire'">
+    <h3><u>REPORTERS FOR HIRE</u></h3>
+</div>
+
+<div ng-show="tabs.reporters == 'past'">
+    <h3><u>REPORTERS HISTORY</u></h3>
+</div>

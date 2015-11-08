@@ -1,0 +1,146 @@
+{
+  "reporters": [{
+    "id": 0,
+    "firstName": "John",
+    "secondName": "Mcdullough",
+    "gender": {
+      "id": 1,
+      "label": "Male"
+    },
+    "personallty": {
+      "id": 0,
+      "label": "Jerk",
+      "modifiers": {}
+    },
+    "skills": [
+      {
+        "id": 0,
+        "label": "Finance & Business",
+        "xp": 19
+      },
+      {
+        "id": 1,
+        "label": "World Affairs",
+        "xp": 66
+      },
+      {
+        "id": 2,
+        "label": "Politics",
+        "xp": 2
+      },
+      {
+        "id": 3,
+        "label": "Sports",
+        "xp": 29
+      },
+
+      {
+        "id": 7,
+        "label": "Entertainment",
+        "xp": 52
+      },
+      {
+        "id": 4,
+        "label": "Culture & Arts",
+        "xp": 43
+      },
+      {
+        "id": 5,
+        "label": "Science & Technology",
+        "xp": 48
+      },
+      {
+        "id": 6,
+        "label": "Health & Education",
+        "xp": 4
+      }
+    ],
+    "political": {
+      "left": 78,
+      "right": 22
+    },
+    "jobSatisfaction": 96,
+    "wage": 6818,
+    "sources": 9,
+    "speed": 80,
+    "luck": "100",
+    "iq": 90,
+    "integraty": 50,
+    "quality": 52,
+    "dead": false,
+    "injail": false,
+    "hired": false
+  }, {
+    "id": 1,
+    "firstName": "Jill",
+
+    "secondName": "Wallawoski",
+    "gender": {
+      "id": 2,
+      "label": "Female"
+    },
+    "personallty": {
+      "id": 1,
+      "label": "Charming",
+      "modifiers": {}
+    },
+    "skills": [
+      {
+        "id": 0,
+        "label": "Finance & Business",
+        "xp": 49
+      },
+      {
+        "id": 1,
+        "label": "World Affairs",
+        "xp": 16
+      },
+      {
+        "id": 2,
+        "label": "Politics",
+        "xp": 22
+      },
+      {
+        "id": 3,
+        "label": "Sports",
+        "xp": 4
+      },
+
+      {
+        "id": 7,
+        "label": "Entertainment",
+        "xp": 55
+      },
+      {
+        "id": 4,
+        "label": "Culture & Arts",
+        "xp": 13
+      },
+      {
+        "id": 5,
+        "label": "Science & Technology",
+        "xp": 88
+      },
+      {
+        "id": 6,
+        "label": "Health & Education",
+        "xp": 34
+      }
+    ],
+    "political": {
+      "left": 47,
+      "right": 73
+    },
+    "jobSatisfaction": 67,
+    "wage": 2818,
+    "sources": 12,
+    "speed": 72,
+    "luck": 23,
+    "iq": 53,
+    "integraty": 84,
+    "quality": 78,
+    "dead": false,
+    "injail": false,
+    "hired": false
+  }]
+}

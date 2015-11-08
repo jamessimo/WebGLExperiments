@@ -1,0 +1,674 @@
+@font-face{
+  font-family:'TypeWriter';
+  src:url("assets/fonts/typewcond_demi.otf");
+}
+@font-face{
+  font-family:'TypeWriter';
+  src:url("assets/fonts/typewcond_bold.otf");
+  font-weight:bold;
+}
+@font-face{
+  font-family:'HandWriting';
+  src:url("assets/fonts/PhontPhreaksHandwriting.ttf");
+}
+@font-face{
+  font-family:'Newspaper1';
+  src:url("assets/fonts/OldeEnglish.ttf");
+}
+
+
+
+
+html {
+  background-color: black;
+}
+body{
+  width: 1024px;
+  height: 786px;
+  overflow:hidden;
+  background-color: white;
+  margin: auto;
+  font-family: 'TypeWriter';
+  color: #333;
+  font-size: 110%;
+}
+
+button{
+  -webkit-appearance: none;
+  border: none;
+  color: black;
+  font-family: sans-serif;
+}
+button:active,
+button:focus
+{
+  box-shadow: none;
+  outline:none;
+}
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #8D8153;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,0,0,0.4);
+}
+progress{
+  -webkit-appearance: none;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+progress[value]::-webkit-progress-value{
+  background-color: #ff5555;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px  rgba(0, 0, 0, 0.25) inset;
+}
+
+.tooltip-DEP{
+  display: inline;
+  position: relative;
+  cursor: pointer;
+  transition: all 2s;
+
+}
+.tooltip-DEP:hover:after{
+  transition: all 2s;
+  background: rgba(0,0,0,.7);
+  border-radius: 5px;
+  color: #fff;
+  content: attr(title);
+  left: 0px;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 195px;
+  bottom: 26px;
+}
+
+.tooltip-DEP:hover:before{
+    border: solid;
+    border-color: rgba(0,0,0,.7) transparent;
+    border-width: 6px 6px 0 6px;
+    bottom: 20px;
+    content: "";
+    left: 50%;
+    position: absolute;
+    z-index: 99;
+}
+
+
+blur{
+  -webkit-filter: blur(2px);
+  z-index: 90;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+popup{
+  width: inherit;
+  height: 100%;
+  position: absolute;
+  z-index: 100;
+  background-color: rgba(0,0,0,0.3);
+  display: table;
+
+}
+popup .content{
+  width: 60%;
+  height: 65%;
+  background: url('assets/textures/paper.jpg');
+  display: block;
+  text-align: center;
+  margin: 8em auto;
+  font-size: 110%;
+  box-shadow: 0 0 40px 0px rgba(0,0,0,0.6);
+}
+popup .content.headlines{
+  margin: 0em auto;
+  text-align:left;
+  position: absolute;
+}
+popup .content.headlines:nth-child(1){
+  top:0px;
+}
+popup .content.headlines:nth-child(2){
+  top:50px;
+      z-index: 1;
+}
+popup .content.headlines:nth-child(3){
+  top:100px;
+      z-index: 2;
+}
+popup .content.headlines:nth-child(4){
+  top:150px;
+      z-index: 3;
+}
+popup .content.headlines:nth-child(5){
+  top:200px;
+      z-index: 4;
+}
+popup .content.headlines:nth-child(6){
+  top:250px;
+      z-index: 5;
+}
+
+popup .content.headlines:nth-child(7){
+  top:300px;
+      z-index: 6;
+}
+
+popup .content.headlines:nth-child(8){
+  top:350px;
+      z-index: 7;
+}
+
+
+
+popup .content button{
+  -webkit-appearance: none;
+  font-size: 110%;
+  padding: 5px 30px;
+  border-radius: 5px;
+  background: url('assets/textures/folder.jpg');
+  border: none;
+  color: white;
+  font-family: sans-serif;
+}
+
+popup .content .header button{
+  font-size: 20px;
+  padding: 5px;
+}
+
+.handwrite{
+  font-family:'HandWriting';
+  color: #246EBC;
+  text-decoration: underline;
+  text-decoration-color: black;
+}
+topbar {
+  background-color: #333;
+  color: white;
+  width:717px;
+  height:50px;
+  display: table;
+  box-shadow: 0 0 30px #333;
+  position: relative;
+  font-family: arial;
+  z-index: 10;
+}
+topbar .paper{
+  background: url(assets/ui/newspaper.png);
+  position: absolute;
+  width: 170px;
+  height: 85px;
+  background-size: 170px;
+  background-repeat: no-repeat;
+  left: 5px;
+  top: 5px;
+  -webkit-backface-visibility: hidden;
+  transition: top 0.5s
+}
+topbar .paper:hover{
+    top: 15px;
+}
+topbar .paperblock{
+  background: #333;
+  position: absolute;
+  width: 24px;
+  height: 50px;
+  left: 0;
+  z-index: 1;
+}
+topbar .paperback{
+  background: url(assets/ui/newspaper-topbar-back.png);
+  position: absolute;
+  width: 31px;
+  height: 73px;
+  background-size: 31px 73px;
+  background-repeat: no-repeat;
+  left: 0;
+}
+topbar .paper .content{
+  color: #333;
+  padding: 5px;
+  text-align: center;
+  font-family: arial;
+  font-size: 16px;
+  position: relative;
+  width: 145px;
+  display: table;
+  height: 80px;
+  float: right;
+}
+topbar .paper .content .inner{
+  display: table-cell;
+  vertical-align: middle;
+}
+topbar .paper h3{
+  font-family: 'Newspaper1';
+   font-size: 30px;
+   margin: 0;
+   text-shadow: 0px 1px 0px snow;
+}
+topbar .item{
+  display: table;
+  height: 50px;
+  width: 100%;
+  text-align: center;
+
+}
+topbar .item .inner{
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 18px;
+}
+topbar .item .inner.timecontrol{
+  font-size: 25px;
+}
+topbar .item .inner i{
+}
+canvas,
+maingame{
+  width: 717px;
+  height: 551px;
+  background-color: #FFCCCC;
+  z-index: -1;
+  margin-top: -1px;
+}
+
+maingame {
+  display:none;
+}
+
+bottombar{
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 717px;
+  background: url('assets/textures/leather.jpg');
+  height: 100px;
+  overflow: visible;
+  padding: 18px 0px;
+  box-shadow: -10px 0 30px #333;
+  background-size: 40%;
+
+}
+bottombar .btn{
+  width:100%;
+  box-shadow: 0 0 10px black;
+  height: 64px;
+}
+bottombar .reporters-btn{
+   background:url('assets/ui/reporters_sprite_btns.png');
+   background-size: cover;
+}
+bottombar .audiance-btn{
+  background:url('assets/ui/audiance_sprite_btns.png');
+  background-size: cover;
+}
+bottombar .research-btn{
+  background:url('assets/ui/research_sprite_btns.png');
+  background-size: cover;
+}
+bottombar .audiance-btn{
+  background:url('assets/ui/audiance_sprite_btns.png');
+  background-size: cover;
+}
+bottombar .reporters-btn:hover,
+bottombar .audiance-btn:hover,
+bottombar .research-btn:hover
+{
+  background-position:0 -64px;
+}
+bottombar .reporters-btn:active,
+bottombar .audiance-btn:active,
+bottombar .research-btn:active,
+bottombar .reporters-btn.active,
+bottombar .audiance-btn.active,
+bottombar .research-btn.active{
+  background-position:0 -128px;
+}
+bottombar img{
+  width:100%;
+  box-shadow: 0 0 10px black;
+}
+bottombar .clock{
+  position: relative;
+  bottom: 170px;
+  position: relative;
+  z-index:3;
+}
+bottombar button{
+  width:100%;
+  height:60px;
+}
+
+bottombar  .col-1-6, bottombar .col-2-12 {
+  width: 14.50%;
+}
+bottombar .col-1-12 button {
+  font-size: 2em;
+}
+.backgroundTabs {
+  background-color: #333;
+  height: 50px;
+  position: absolute;
+  top: 0px;
+  position: absolute;
+    top: -50px;
+  width: inherit;
+}
+sidebar
+{  width: 307px;
+  background: url('assets/textures/folder.jpg');
+  display: block;
+  float: right;
+  height: 651px;
+  box-shadow: 0px 0 30px #333;
+  position: relative;
+
+
+}
+sidebar contain{
+  padding: 0 10px;
+  overflow-y: scroll;
+  height: 651px;
+  display: block;
+  position: static;
+  width: 307px;
+}
+sidebar gradiant{
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(214,198,147,1)), color-stop(100%,rgba(125,185,232,0)));
+  width: 285px;
+  height: 25px;
+  display: block;
+  position: fixed;
+  z-index: 3;
+}
+sidebar contain h3 {
+  clear: both;
+  width: 100%;
+  text-align: center;
+  opacity: 0.4;
+  text-shadow: 1px 1px rgb(238, 233, 219);
+}
+sidebar progress{
+  width:100px;
+  float: right;
+  top: 4px;
+  position: relative;
+}
+sidebar progress.pol-right,
+sidebar progress.pol-left{
+  width:50px;
+}
+sidebar progress[value].pol-left::-webkit-progress-value{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+sidebar progress[value].pol-right::-webkit-progress-value{
+  float:right;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #0095dd;
+
+}
+sidebar progress[value].pol-right::-webkit-progress-bar{
+
+
+}
+
+
+sidebar li{
+}
+sidebar img{
+  float: left;
+  margin-right: 10px;
+
+}
+sidebar hr{
+  border-top-color: rgba(51, 51, 51,0.4);
+  border-bottom-color: rgb(238, 233, 219);
+  opacity: 0.4;
+  border-top-width: 2px;
+}
+
+desk{
+  width:20%;
+  height:50px;
+  background-color: rgb(210, 122, 28);
+  box-shadow:  0 0 5px rgba(0,0,0,0.3);
+  display:block;
+  float:left;
+  margin:30px;
+  text-align: center;
+  display: table;
+  position: relative;
+ }
+ desk span{
+   display: table-cell;
+   text-align: center;
+   vertical-align: middle;
+ }
+ desk notification{
+   position: absolute;
+   left: 128px;
+   top: -15px;
+ }
+ notifications{
+   position: absolute;
+   bottom: 0;
+   height: 232px;
+   width: 309px;
+   left: 470px;
+ }
+
+
+.letter {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 10px;
+  position: relative;
+  width: 30%;
+  font-size: 5px;
+  left: 90px;
+    border: 1px solid #f1f1f1;
+}
+.proposals notification{
+
+}
+.proposals {
+  width: 125px;
+  height:185px;
+  left: 145px;
+  position: absolute;
+  transition: top 0.5s;
+  top:40px;
+  background: url('assets/ui/proposal.png');
+  background-size: contain;
+}
+.proposals:hover{
+  top:20px;
+
+}
+
+.newspaper-progress{
+  position: absolute;
+  left: 275px;
+
+  transform: rotate(3deg);
+  transition: top 0.5s;
+  top: 40px;
+  width: 77px;
+  height: 180px;
+  background: url('assets/ui/newspaper_progress_back.png');
+  background-size: contain;
+}
+.newspaper-progress.peek,
+.newspaper-progress:hover{
+  top:20px;
+}
+.newspaper-progress-front{
+  background: url('assets/ui/newspaper_progress_front.png');
+  background-size: contain;
+  -webkit-clip-path: polygon(0 65%, 100% 65%,100% 65%, 0 65%);
+  width: 77px;
+  height: 180px;
+
+}
+.newspaper-progress-back{
+}
+
+
+
+
+tabs {
+  list-style: none;
+  position: absolute;
+  top: -39px;
+  right: -11px;
+  height: 50px;
+  width: 301px;
+  display: block;
+}
+tabs li {
+  /* Makes a horizontal row */
+  float: left;
+
+  /* So the psueudo elements can be
+     abs. positioned inside */
+  position: relative;
+}
+tabs a {
+  /* Make them block level
+     and only as wide as they need */
+  float: left;
+  padding: 8px 20px;
+  text-decoration: none;
+
+  /* Default colors */
+  color: black;
+  background: url('assets/textures/paper.jpg');
+
+  /* Only round the top corners */
+  -webkit-border-top-left-radius: 15px;
+  -webkit-border-top-right-radius: 15px;
+  -moz-border-radius-topleft: 15px;
+  -moz-border-radius-topright: 15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+tabs .active {
+  /* Highest, active tab is on top */
+  z-index: 3;
+}
+tabs .active a {
+  /* Colors when tab is active */
+  background: url('assets/textures/folder.jpg');
+  color: black;
+}
+tabs li:before, tabs li:after,
+tabs li a:before, tabs li a:after {
+  /* All pseudo elements are
+     abs. positioned and on bottom */
+  position: absolute;
+  bottom: 0;
+}
+/* Only the first, last, and active
+   tabs need pseudo elements at all */
+tabs li:last-child:after,   tabs li:last-child a:after,
+tabs li:first-child:before, tabs li:first-child a:before,
+tabs .active:after,   tabs .active:before,
+tabs .active a:after, tabs .active a:before {
+  content: "";
+}
+tabs .active:before, tabs .active:after {
+  background: url('assets/textures/folder.jpg');
+
+  /* Squares below circles */
+  z-index: 1;
+}
+/* Squares */
+tabs li:before, tabs li:after {
+  background: url('assets/textures/paper.jpg');
+  width: 10px;
+  height: 10px;
+}
+tabs li:before {
+  left: -10px;
+}
+tabs li:after {
+  right: -10px;
+}
+/* Circles */
+tabs li a:after, tabs li a:before {
+  width: 20px;
+  height: 20px;
+  /* Circles are circular */
+  -webkit-border-radius: 10px;
+  -moz-border-radius:    10px;
+  border-radius:         10px;
+  background: #333;
+
+  /* Circles over squares */
+  z-index: 2;
+}
+tabs .active a:after, tabs .active a:before {
+  background: url('assets/textures/paper.jpg');
+}
+/* First and last tabs have different
+   outside color needs */
+tabs li:first-child.active a:before,
+tabs li:last-child.active a:after {
+  background: #333;
+}
+tabs li a:before {
+  left: -20px;
+}
+tabs li a:after {
+  right: -20px;
+}
+
+.letter:before, .letter:after {
+  content: "";
+  height: 98%;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+.letter:before {
+  background: #f6f6f6;
+  box-shadow: 0 0 3px rgba(0,0,0,0.1);
+  left: 1px;
+  top: 12px;
+  transform: rotate(-7.5deg);
+  width: 19px;
+}
+.letter:after {
+  background: #fafafa;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  left: 0px;
+  top: 6px;
+  transform: rotate(-3.4deg);
+  width: 10px;
+}
