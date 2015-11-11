@@ -2,24 +2,13 @@
 ========= Conversion from Blender to Babylon.js =========
 	Python World class constructor completed
 	processing begun of mesh:  Plane
-		processing begun of Standard material:  floor
-		Diffuse texture found
-			Image texture found, type:  diffuseTexture, mapped using: "UVMap"
-		Opacity texture found
-			Image texture found, type:  opacityTexture, mapped using: "UVMap"
-		Bump texture found
-			Image texture found, type:  bumpTexture, mapped using: "UVMap"
-		processing begun of Standard material:  Wall
-		processing begun of Standard material:  Material.002
-		Diffuse texture found
-			Image texture found, type:  diffuseTexture, mapped using: "UVMap"
-		Bump texture found
-			Image texture found, type:  bumpTexture, mapped using: "UVMap"
-		processing begun of Standard material:  shadeless
+		processing begun of Standard material:  Material.001
+		processing begun of Standard material:  wall
+		processing begun of Standard material:  flor
 		processing begun of multimaterial:  Office_Test.Multimaterial#0
-		num positions      :  647
-		num normals        :  647
-		num uvs            :  1294
+		num positions      :  632
+		num normals        :  632
+		num uvs            :  1264
 		num uvs2           :  0
 		num colors         :  0
 		num indices        :  1230
@@ -31,4 +20,4 @@
 ========= Writing of scene file started =========
 ========= Writing of scene file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 0.1409 secs
+elapsed time:  0 min, 0.023 secs

@@ -12,6 +12,8 @@ var createScene = function () {
 
     scene.clearColor = new BABYLON.Color3(0, 0, 0.7);
 
+
+
     // Light
     var light = new BABYLON.PointLight("omni", new BABYLON.Vector3(0, 50, 0), scene);
 
