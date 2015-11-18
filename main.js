@@ -84,6 +84,9 @@ angular.module('game', ['ngDropdowns'])
           };
         });
       });
+      $scope.setPositionTest = function(x,y){
+        $('#2d3d').css( "transform", "translate(" + x + 'px' + "," + y + 'px' + ")" );
+      }
       //Fetch All Topics
       $http.get('data/audiance.json').success(function(data) {
         $scope.audiance = data.audiance;
@@ -265,9 +268,14 @@ angular.module('game', ['ngDropdowns'])
 
 
     */
+
+
     function randomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);
     }
+
+
+
   })
   .directive('clock', function() {
    return {
