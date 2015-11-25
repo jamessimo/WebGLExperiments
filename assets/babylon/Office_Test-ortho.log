@@ -1,7 +1,7 @@
 	Exporter version: 3.0.6, Blender version: 2.76 (sub 0)
 ========= Conversion from Blender to Babylon.js =========
 	Python World class constructor completed
-	processing begun of mesh:  Plane
+	processing begun of mesh:  baseScene
 		processing begun of Standard material:  shadeless.001
 		processing begun of Standard material:  wall
 		Diffuse texture found
@@ -25,6 +25,118 @@
 		num colors         :  0
 		num indices        :  1230
 	processing begun of camera (ArcRotateCamera):  Camera
+	processing begun of mesh:  Plane.013
+		WARNING: No materials have been assigned: 
+		num positions      :  84
+		num normals        :  84
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  84
+	processing begun of mesh:  Plane.012
+		WARNING: No materials have been assigned: 
+		num positions      :  84
+		num normals        :  84
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  84
+	processing begun of mesh:  Plane.011
+		WARNING: No materials have been assigned: 
+		num positions      :  84
+		num normals        :  84
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  84
+	processing begun of mesh:  Plane.010
+		WARNING: No materials have been assigned: 
+		num positions      :  84
+		num normals        :  84
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  84
+	processing begun of mesh:  Plane.009
+		WARNING: No materials have been assigned: 
+		num positions      :  84
+		num normals        :  84
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  84
+	processing begun of mesh:  Plane.008
+		WARNING: No materials have been assigned: 
+		num positions      :  84
+		num normals        :  84
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  84
+	processing begun of mesh:  Plane.007
+		WARNING: No materials have been assigned: 
+		num positions      :  84
+		num normals        :  84
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  84
+	processing begun of mesh:  Plane.006
+		WARNING: No materials have been assigned: 
+		num positions      :  84
+		num normals        :  84
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  84
+	processing begun of mesh:  Plane.005
+		WARNING: No materials have been assigned: 
+		num positions      :  84
+		num normals        :  84
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  84
+	processing begun of mesh:  Plane.004
+		WARNING: No materials have been assigned: 
+		num positions      :  84
+		num normals        :  84
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  84
+	processing begun of mesh:  Plane.003
+		WARNING: No materials have been assigned: 
+		num positions      :  84
+		num normals        :  84
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  84
+	processing begun of mesh:  Plane.002
+		WARNING: No materials have been assigned: 
+		num positions      :  84
+		num normals        :  84
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  84
+	processing begun of mesh:  Plane.001
+		WARNING: No materials have been assigned: 
+		num positions      :  84
+		num normals        :  84
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  84
+	processing begun of mesh:  Plane
+		WARNING: No materials have been assigned: 
+		num positions      :  84
+		num normals        :  84
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  84
 	processing begun of light (POINT):  Lamp.003
 	processing begun of light (POINT):  Lamp.002
 	processing begun of light (POINT):  Lamp.001
@@ -32,4 +144,4 @@
 ========= Writing of scene file started =========
 ========= Writing of scene file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 0.0516 secs
+elapsed time:  0 min, 0.0736 secs
