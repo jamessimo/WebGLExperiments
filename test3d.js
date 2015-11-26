@@ -15,18 +15,20 @@ var objectGrid = [
   {
     "object" : "desk.babylon",
     "pos3" : {x: 2, y: 0, z: -3},
-    "pos2" : {i: 2, j: 0}
+    "pos2" : {i: 8, j: 3}
   },
   {
     "object" : "typewriter.babylon",
     "pos3" : {x: 2, y: 1, z: -3},
-    "pos2" : {i: 2, j: 1}
+    "pos2" : {i: 2, j: 3}
   },
+
   {
     "object" : "desk.babylon",
-    "pos3" : {x: 6, y: 0, z: -3},
-    "pos2" : {i: 7, j: 0}
-  }
+    "pos3" : {x: -6, y: 0, z: -6},
+    "pos2" : {i: 0, j: 0}
+  },
+
 ];
 
 
@@ -79,9 +81,12 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
    var lockout = 0;
    for(var i = 0 ; i < objectGrid.length; i++){
 
-     grid[objectGrid[i].pos2.i][objectGrid[i].pos2.j] = 1;
-
+  // grid[objectGrid[i].pos2.i][objectGrid[i].pos2.j] = 1;
+  var d = objectGrid[i].pos3.x + 6;
+  var g = objectGrid[i].pos3.z + 6;
+      grid[d][g] = 1;
     BABYLON.SceneLoader.ImportMesh("", "assets/babylon/", objectGrid[i].object , scene, function (newMeshes) {
+
       newMeshes[0].position = objectGrid[lockout].pos3;
       lockout++;
     });
@@ -190,6 +195,9 @@ for(var i = 0 ; i < grid.length ; i++){
     createReporter = function(pos){
         BABYLON.SceneLoader.ImportMesh("", "assets/babylon/", "test-actor.babylon", sceneMaster, function (newMeshes) {
           newMeshes[0].position = pos;
+          var d = newMeshes[0].position.x + 6;
+          var g = newMeshes[0].position.z + 6;
+          grid[d][g] = 1;
           console.log('called')
         });
     }

@@ -109,7 +109,7 @@ angular.module('game', ['ngDropdowns'])
       $http.get('data/audiance.json').success(function(data) {
         $scope.audiance = data.audiance;
         $scope.desks = data.audiance.topics;
-        /*TODO attach these options to each desk and pop off the list when assigned
+        /*TODO attach these options to each desk and pop off the list when assigned.
         Make the desk mesh display what topic it is attached too.*/
 
       });
