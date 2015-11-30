@@ -1,0 +1,15 @@
+{"autoClear":true,"clearColor":[0.0509,0.0509,0.0509],"ambientColor":[0,0,0],"gravity":[0,-9.81,0],
+"materials":[],
+"multiMaterials":[],
+"skeletons":[],
+"meshes":[{"name":"Plane.006","id":"Plane.006","billboardMode":0,"position":[-6.4732,0.1051,0.4795],"rotation":[0,0,0],"scaling":[0.5,0.5,0.5],"isVisible":true,"freezeWorldMatrix":false,"isEnabled":true,"useFlatShading":false,"checkCollisions":false,"receiveShadows":false
+,"positions":[1,0,-1,1,0,1,-1,0,1,-1,0,-1,1,0,-1,-1,0,1]
+,"normals":[0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0]
+,"indices":[0,1,2,3,4,5]
+,"subMeshes":[{"materialIndex":0,"verticesStart":0,"verticesCount":6,"indexStart":0,"indexCount":6}]
+,"instances":[]}
+],
+"cameras":[],
+"lights":[],
+"shadowGenerators":[]
+}

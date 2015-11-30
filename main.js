@@ -30,6 +30,8 @@ angular.module('game', ['ngDropdowns'])
           reporter.total = (reporter.quality) * (reporter.sources + reporter.jobSatisfaction);
 
           reporter.assignDesk = function(topic){
+            /*TODO Make this ref a mesh*/
+
             console.log(topic);
 
             var currentDesk = $filter('filter')($scope.desks, function (d) {return d.id === topic.id;})[0];
@@ -60,6 +62,11 @@ angular.module('game', ['ngDropdowns'])
             }
 
           }
+          reporter.create3D = function(){
+
+              createReporter(new BABYLON.Vector3(randomInt(-7,7),0,randomInt(-7,7)))
+
+          },
           reporter.update = function(){
 
             if($scope.paperProgress > 0){
@@ -82,15 +89,28 @@ angular.module('game', ['ngDropdowns'])
 
             }
           };
+          setTimeout(function(){
+              reporter.create3D();
+          },1000)
+
         });
+
+
       });
+
+
       $scope.setPositionTest = function(x,y){
-        $('#2d3d').css( "transform", "translate(" + x + 'px' + "," + y + 'px' + ")" );
+        //fire animation
+        //Fetch position
+
+      //  $('#2d3d').css( "transform", "translate(" + x + 'px' + "," + y + 'px' + ")" );
       }
       //Fetch All Topics
       $http.get('data/audiance.json').success(function(data) {
         $scope.audiance = data.audiance;
         $scope.desks = data.audiance.topics;
+        /*TODO attach these options to each desk and pop off the list when assigned.
+        Make the desk mesh display what topic it is attached too.*/
 
       });
 
@@ -105,6 +125,8 @@ angular.module('game', ['ngDropdowns'])
       //Start Game Loop
       window.requestAnimationFrame(step);
     }
+    console.log(BABYLON);
+
 
     function addToPaper(ammount){
       $scope.paperProgress -= ammount;
@@ -149,125 +171,6 @@ angular.module('game', ['ngDropdowns'])
       $scope.paused = bool;
     }
 
-/*
-
-
-
-    $http.get('audiance.json').success(function(data) {
-      console.log(data);
-      $scope.audiance = data.audiance;
-      $scope.desks =  data.audiance.topics;
-    });
-
-    $scope.articles = [];
-    function init(){
-      //Loop through all reports
-
-    }
-
-    $scope.hire = function(id) {
-      //send ID to Server
-    }
-
-
-    $scope.assignDesk = function(r,desk) {
-      var currentDesk = $filter('filter')($scope.desks, function (d) {return d.id === desk.id;})[0];
-      currentDesk.reporter = r;
-      $scope.startWriting(r,desk.id);
-
-    }
-    $scope.startWriting = function(r,tid) {
-      window.requestAnimationFrame(step);
-      var start = null;
-      var sources = randomInt(r.sources / r.integraty, r.sources);
-      var topic = $filter('filter')(r.skills, function (d) {return d.id === tid;})[0];
-      console.log(topic);
-      $scope.currentTopic = tid;
-      $scope.total = (topic.xp + r.quality) * (r.sources + r.jobSatisfaction);
-
-      //Writing skills controls how much you can fuck up your skill Writing
-      r.article = {
-        'headline': 'Man eats own head!', //get rnd header
-        'quality': (topic.xp + r.quality) * (sources + r.jobSatisfaction),
-        'type': topic,
-        'politcal': {
-          'left': r.political.left,
-          'right': r.political.right //Paper freedom will limit how much this fluxuates
-        },
-        'trust': (r.integraty * sources) - 50,
-        'total': $scope.total
-      }
-
-      var totalTime = 2000;
-
-      function step(timestamp) {
-        if (!start) start = timestamp;
-        var progress = timestamp - start;
-        if (progress <= totalTime) {
-          r.progress = Math.ceil(progress / totalTime * 100);
-          tick = (progress / totalTime * 360);
-          $scope.mins = {
-            'transform' : 'rotate('+tick+'deg)'
-          };
-          $scope.$apply();
-          window.requestAnimationFrame(step);
-        } else {
-          tick = 0;
-          progress = false;
-          start = null;
-          $scope.articles.push(r.article);
-          $scope.$apply();
-        }
-      }
-    }
-
-    $scope.publish = function(r) {
-
-      window.requestAnimationFrame(step);
-
-      var start = null;
-
-      function step(timestamp) {
-        $scope.publishedArticle = r.article;
-
-        if (!start) start = timestamp;
-        var progress = timestamp - start;
-        if (progress <= 4000) {
-          $scope.publishedArticle.progress = Math.ceil(progress / 4000 * 100);
-          $scope.$apply();
-          window.requestAnimationFrame(step);
-
-        } else {
-
-          //Audiance
-            if($scope.audiance.political.left > r.article.political.left){
-                //No bonus
-            }else{
-              //bonus
-            }
-          //Audiance
-          if ($scope.audiance.expectedQuality > r.article.quality) {
-            // deduct score
-          } else {
-            //bonus
-          }
-
-
-          $scope.publishedArticle.score = r.article.quality;
-          $scope.publishedArticle.sold = 312; //Base buyers * poltical + quality // Grow fanbase
-          $scope.publishedArticle.profit = 981;
-
-          progress = false;
-          start = null;
-          $scope.$apply();
-        }
-
-      }
-
-    }
-
-
-    */
 
 
     function randomInt(min, max) {
