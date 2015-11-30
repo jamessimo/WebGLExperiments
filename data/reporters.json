@@ -69,7 +69,11 @@
     "quality": 52,
     "dead": false,
     "injail": false,
-    "hired": false
+    "hired": true,
+    "3dModel" : 'test-actor.babylon',
+    "lkPos" : {x: 2, y: 0, z: 3},
+    "lkRot" : {x: 0, y: 0, z: 0},
+    "lkAction" : false 
   }, {
     "id": 1,
     "firstName": "Jill",
@@ -141,6 +145,10 @@
     "quality": 78,
     "dead": false,
     "injail": false,
-    "hired": false
+    "hired": false,
+    "3dModel" : 'test-actor.babylon',
+    "lkPos" : {x: 2, y: 0, z: 3},
+    "lkRot" : {x: 0, y: 0, z: 0},
+    "lkAction" : false
   }]
 }

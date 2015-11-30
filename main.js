@@ -30,6 +30,7 @@ angular.module('game', ['ngDropdowns'])
           reporter.total = (reporter.quality) * (reporter.sources + reporter.jobSatisfaction);
 
           reporter.assignDesk = function(topic){
+
             /*TODO Make this ref a mesh*/
 
             console.log(topic);
@@ -58,14 +59,10 @@ angular.module('game', ['ngDropdowns'])
               'total': this.total * 2,
               'writing' : true,
               'progress' : 0
-
             }
-
           }
           reporter.create3D = function(){
-
-              createReporter(new BABYLON.Vector3(randomInt(-7,7),0,randomInt(-7,7)))
-
+            createReporter(this.id,new BABYLON.Vector3(reporter.lkPos))
           },
           reporter.update = function(){
 
@@ -91,7 +88,7 @@ angular.module('game', ['ngDropdowns'])
           };
           setTimeout(function(){
               reporter.create3D();
-          },1000)
+          },1000);
 
         });
 
@@ -103,7 +100,7 @@ angular.module('game', ['ngDropdowns'])
         //fire animation
         //Fetch position
 
-      //  $('#2d3d').css( "transform", "translate(" + x + 'px' + "," + y + 'px' + ")" );
+        //  $('#2d3d').css( "transform", "translate(" + x + 'px' + "," + y + 'px' + ")" );
       }
       //Fetch All Topics
       $http.get('data/audiance.json').success(function(data) {
@@ -113,6 +110,13 @@ angular.module('game', ['ngDropdowns'])
         Make the desk mesh display what topic it is attached too.*/
 
       });
+
+      $scope.buyObject = function(object){
+        //Deduct from sum total
+        //Add 3D Mesh to scene and attach to mouse cursor (show a grid)
+        //If object is a Desk open desk popup to assign desk to topic
+          //setDeskType();
+      }
 
       //Load scean
 
@@ -127,7 +131,6 @@ angular.module('game', ['ngDropdowns'])
     }
     console.log(BABYLON);
 
-
     function addToPaper(ammount){
       $scope.paperProgress -= ammount;
 
@@ -138,8 +141,7 @@ angular.module('game', ['ngDropdowns'])
          if($scope.paperProgress >= 40.0){
            $scope.peek = true;
          }else if($scope.paperProgress <= 0){
-           console.log('finished paper!')
-
+           console.log('finished paper!');
          }else{
            $scope.peek = false;
          }
@@ -163,9 +165,7 @@ angular.module('game', ['ngDropdowns'])
       $scope.$apply();
       //Draw Loop
       window.requestAnimationFrame(step);
-
     }
-
 
     $scope.pauseState = function(bool) {
       $scope.paused = bool;
