@@ -1,375 +1,93 @@
-<html ng-app="game">
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="grid.css" rel="stylesheet">
-  <link href="assets/ui/css/clock.css" rel="stylesheet">
-  <link href="main.css" rel="stylesheet">
-  <link href="bower_components/font-awesome/css/font-awesome.css" rel="stylesheet">
-  <link href="dropdown.css" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-  <link href="bower_components/tooltipster/css/tooltipster.css" rel="stylesheet">
-</head>
+    <title>Justified Nav Template for Bootstrap</title>
 
+    <!-- Bootstrap core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<body ng-controller="gameController" class="">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-  <popup ng-show="false">
-    <div class="content headlinepropose headlines">
-      <div class="header">
-        <span>Finance & Business Headline by Dick Handson</span>
+    <!-- Custom styles for this template -->
+    <link href="justified-nav.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- The justified navigation menu is meant for single line per list item.
+           Multiple lines will require custom code not provided by Bootstrap. -->
+      <div class="masthead">
+        <h3 class="text-muted">Project name</h3>
+        <nav>
+          <ul class="nav nav-justified">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Downloads</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
       </div>
-      <h3>Headline Proposal:
-        <span class="handwrite">Man Eats Own Head!</span>
-      </h3>
 
-      <h3>Author:
-        <span class="handwrite">Dick Handson</span>
-      </h3>
-      <h3>Topic:
-        <span class="handwrite">Finance & Business</span>
-      </h3>
-      <h3>Draft:
-        <span class="handwrite">1</span>
-        <h3>
-          <h3>Quality:
-            <progress value="60" max="100"></progress>
-          </h3>
-
-          <button>Print it!</button>
-          <button>Touch it up</button>
-          <button>Trash this</button>
-    </div>
-    <div class="content headlinepropose headlines">
-      <div class="header">
-        <span>Finance & Business Headline by Dick Handson</span>
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+        <h1>Marketing stuff!</h1>
+        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
+        <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
       </div>
-      <h3>Headline Proposal:
-        <span class="handwrite">Man Eats Own Head!</span>
-      </h3>
 
-      <h3>Author:
-        <span class="handwrite">Dick Handson</span>
-      </h3>
-      <h3>Topic:
-        <span class="handwrite">Finance & Business</span>
-      </h3>
-      <h3>Draft:
-        <span class="handwrite">1</span>
-        <h3>
-          <h3>Quality:
-            <progress value="60" max="100"></progress>
-          </h3>
-
-          <button>Print it!</button>
-          <button>Touch it up</button>
-          <button>Trash this</button>
-    </div>
-    <div class="content headlinepropose headlines">
-      <div class="header">
-        <span>Finance & Business Headline by Dick Handson</span>
-      </div>
-      <h3>Headline Proposal:
-        <span class="handwrite">Man Eats Own Head!</span>
-      </h3>
-
-      <h3>Author:
-        <span class="handwrite">Dick Handson</span>
-      </h3>
-      <h3>Topic:
-        <span class="handwrite">Finance & Business</span>
-      </h3>
-      <h3>Draft:
-        <span class="handwrite">1</span>
-        <h3>
-          <h3>Quality:
-            <progress value="60" max="100"></progress>
-          </h3>
-
-          <button>Print it!</button>
-          <button>Touch it up</button>
-          <button>Trash this</button>
-    </div>
-    <div class="content headlinepropose headlines">
-      <div class="header">
-        <span>Finance & Business Headline by Dick Handson</span>
-      </div>
-      <h3>Headline Proposal:
-        <span class="handwrite">Man Eats Own Head!</span>
-      </h3>
-
-      <h3>Author:
-        <span class="handwrite">Dick Handson</span>
-      </h3>
-      <h3>Topic:
-        <span class="handwrite">Finance & Business</span>
-      </h3>
-      <h3>Draft:
-        <span class="handwrite">1</span>
-        <h3>
-          <h3>Quality:
-            <progress value="60" max="100"></progress>
-          </h3>
-
-          <button>Print it!</button>
-          <button>Touch it up</button>
-          <button>Trash this</button>
-    </div>
-    <div class="content headlinepropose headlines">
-      <div class="header">
-        <span>Finance & Business Headline by Dick Handson</span>
-      </div>
-      <h3>Headline Proposal:
-        <span class="handwrite">Man Eats Own Head!</span>
-      </h3>
-
-      <h3>Author:
-        <span class="handwrite">Dick Handson</span>
-      </h3>
-      <h3>Topic:
-        <span class="handwrite">Finance & Business</span>
-      </h3>
-      <h3>Draft:
-        <span class="handwrite">1</span>
-        <h3>
-          <h3>Quality:
-            <progress value="60" max="100"></progress>
-          </h3>
-
-          <button>Print it!</button>
-          <button>Touch it up</button>
-          <button>Trash this</button>
-    </div>
-    <div class="content headlinepropose headlines">
-      <div class="header">
-        <span>Finance & Business Headline by Dick Handson</span>
-      </div>
-      <h3>Headline Proposal:
-        <span class="handwrite">Man Eats Own Head!</span>
-      </h3>
-
-      <h3>Author:
-        <span class="handwrite">Dick Handson</span>
-      </h3>
-      <h3>Topic:
-        <span class="handwrite">Finance & Business</span>
-      </h3>
-      <h3>Draft:
-        <span class="handwrite">1</span>
-        <h3>
-          <h3>Quality:
-            <progress value="60" max="100"></progress>
-          </h3>
-
-          <button>Print it!</button>
-          <button>Touch it up</button>
-          <button>Trash this</button>
-    </div>
-    <div class="content headlinepropose headlines">
-      <div class="header">
-        <span>Finance & Business Headline by Dick Handson</span>
-      </div>
-      <h3>Headline Proposal:
-        <span class="handwrite">Man Eats Own Head!</span>
-      </h3>
-
-      <h3>Author:
-        <span class="handwrite">Dick Handson</span>
-      </h3>
-      <h3>Topic:
-        <span class="handwrite">Finance & Business</span>
-      </h3>
-      <h3>Draft:
-        <span class="handwrite">1</span>
-        <h3>
-          <h3>Quality:
-            <progress value="60" max="100"></progress>
-          </h3>
-
-          <button>Print it!</button>
-          <button>Touch it up</button>
-          <button>Trash this</button>
-    </div>
-
-  </popup>
-
-  <popup ng-show="alert">
-    <div class="content">
-      <h1>Header 1</h1>
-      <p>
-        This is a notification! There has been an <b>problem</b> with <u>Reporter Name</u>. He has been shot at by a rouge
-      </p>
-      <button>OK</button>
-      <button>Cancel</button>
-    </div>
-  </popup>
-
-
-  <topbar>
-    <div class="col-3-12">
-      <div class="paperblock">
-      </div>
-      <div class="paper">
-        <div class="content">
-          <div class="inner">
-            <h3>The Morning Herald</h3>
-          </div>
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-lg-4">
+          <h2>Safari bug warning!</h2>
+          <p class="text-danger">As of v8.0, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-lg-4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
         </div>
       </div>
-      &nbsp;
 
-    </div>
-    <div class="col-2-12">
-      <div class="item">
-        <div class="inner">
-          <i class="fa fa-dollar"></i> 9,999,999
-        </div>
-      </div>
-    </div>
-    <div class="col-2-12">
-      <div class="item">
-        <div class="inner timecontrol">
-          <i ng-click="pauseState(true)" class="fa fa-pause"></i>
-          <i ng-click="pauseState(false)" class="fa fa-play"></i>
+      <!-- Site footer -->
+      <footer class="footer">
+        <p>&copy; 2015 Company, Inc.</p>
+      </footer>
 
-        </div>
-      </div>
-    </div>
-    <div class="col-2-12">
-      <div class="item">
-        <div class="inner">
-          <i class="fa fa-users"></i> 24,555
-        </div>
-      </div>
-    </div>
-    <div class="col-3-12">
-      <div class="item">
-        <div class="inner">
-          <i class="fa fa-circle"></i> NOV 1978
-        </div>
-      </div>
-    </div>
-
-  </topbar>
-  <sidebar>
-    <div class="backgroundTabs">
-    </div>
-    <gradiant></gradiant>
-
-    <contain>
-      <reporter-tab class="reporters" ng-show="bottombar == 'reporters'"></reporter-tab>
-      <audiance-tab class="audiance" ng-show="bottombar == 'audiance'"></audiance-tab>
-
-    </contain>
-
-  </sidebar>
-  <div id="canvas-wrap">
-
-    <div id="2d3d" style="position:absolute; width:50px;height:50px;display:block;
-    transform: translate(420px,31px);background:red;"></div>
-    <canvas id="renderCanvas"></canvas>
-  </div>
+    </div> <!-- /container -->
 
 
-  <maingame>
-
-    <desk ng-repeat="desk in audiance.topics">
-      <notification ng-if="desk.reporter.article">
-        <span>1</span>
-      </notification>
-      <span>
-        {{desk.label}}
-        <br> {{desk.reporter.firstName}} {{desk.reporter.secondName}}
-      </span>
-    </desk>
-
-
-    <div class=" col-4-12" ng-show="publishedArticle" style="text-align:center">
-      <h1>Published Article
-        <cite>{{publishedArticle.headline}}</cite>
-      </h1>
-
-      {{publishedArticle.progress}}%
-      <br> Quality = {{publishedArticle.quality}}/{{publishedArticle.total}} - Audiance expect = {{audiance.expectedQuality}}
-      <br>
-
-
-      <button></button>
-      {{publishedArticle.sold}} units sold
-      <br> {{publishedArticle.profit | currency}} profit
-
-    </div>
-
-  </maingame>
-
-
-  <notifications>
-
-    <div class="proposals" ng-click="showArtials = true">
-      <notification ng-show="articles.length">
-        <span>{{articles.length}}</span>
-      </notification>
-    </div>
-
-    <div class="newspaper-progress" ng-class="{'peek': peek}">
-      <div class="newspaper-progress-front" ng-style="clipProgress"></div>
-    </div>
-
-  </notifications>
-  <bottombar>
-
-
-
-    <div class="col-2-12">
-      <div class="btn reporters-btn" ng-click="bottombar = 'reporters'" ng-class="{'active' : bottombar == 'reporters'}"></div>
-    </div>
-    <div class="col-2-12">
-      <div class="btn audiance-btn" ng-click="bottombar = 'audiance'" ng-class="{'active' : bottombar == 'audiance'}"></div>
-    </div>
-
-    <div class="col-5-12">
-      <img src="assets/ui/money_btn.png" style="width:74px;" />
-
-      <clock></clock>
-      <img src="assets/ui/menu_btn.png" style="width:74px;    position: absolute;
-        top: 19px;
-        left: 425px;" />
-
-
-    </div>
-
-    <div class="col-2-12">
-      <div class="btn newspaper-btn" ng-click="bottombar = 'newspaper'"></div>
-    </div>
-    <div class="col-2-12">
-      <div class="btn research-btn" ng-click="bottombar = 'research'"></div>
-    </div>
-  </bottombar>
-</body>
-<!-- Babylon.js -->
-<script src="bower_components/handjs/hand.js"></script>
-
-<script src="bower_components/babylonjs/babylon.2.1-beta.js"></script>
-<script src="cannon.js"></script>
-<script src="oimo.js"></script>
-
-<script src="MersenneTwister19937.js"></script>
-
-<script src="test3d.js"></script>
-
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/angular-dropdowns/angular-dropdowns.js"></script>
-
-<script src="bower_components/tooltipster/js/jquery.tooltipster.min.js"></script>
-<script src="main.js"></script>
-
-
-
-
-
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
 </html>
