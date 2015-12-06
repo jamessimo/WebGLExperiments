@@ -1,0 +1,14 @@
+body {
+  background-image: url('../paper.jpg');
+
+}
+.paper-top {
+  background-repeat: no-repeat;
+  height:100px;
+  width: 100%;
+  margin: auto;
+  background-image: url('../papertop.png');
+  background-size: contain;
+  background-position: top;
+
+}
