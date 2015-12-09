@@ -1,0 +1,13 @@
+<tabs class="group">
+  <li ng-class="{'active' : tabs.reporters == 'current' }" ng-click="tabs.reporters = 'current'"><a>Current</a></li>
+  <li ng-class="{'active' : tabs.reporters == 'hire' }" ng-click="tabs.reporters = 'hire'"><a>Hire</a></li>
+  <li ng-class="{'active' : tabs.reporters == 'past' }" ng-click="tabs.reporters = 'past'"> <a>Past</a></li>
+</tabs>
+<div>
+  <h3><u>Buy Funiture</u></h3>
+  <div ng-repeat="o in objects">
+    {{o.name}}
+    <button ng-click="buyObject(o)">Buy</button>
+  </div>
+
+</div>

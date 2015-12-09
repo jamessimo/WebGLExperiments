@@ -1,0 +1,38 @@
+{
+  "objects" : [
+    {
+      "id" : 1,
+      "name" : "Basic office desk",
+      "desc" : "A not very special desk, to be honest, I think someone just mocked this up in less then 10 minutes",
+      "price" : 200,
+      "techlvl" : 1,
+      "3dObj" : "desk.babylon",
+      "thumbnail" : "desk.png",
+      "type" : "desk",
+      "stats" : {
+        "enviroment" : 2,
+        "radius" : 5
+      }
+    },
+    {
+      "id" : 2,
+      "name" : "Basic office chair",
+      "desc" : "Now this is basic. Like no effort.",
+      "price" : 150,
+      "techlvl" : 1,
+      "3dObj" : "desk.babylon",
+      "thumbnail" : "desk.png",
+      "type" : "interact"
+    },
+    {
+      "id" : 3,
+      "name" : "Basic office plant",
+      "desc" : "Even a simple plant helps liven up a room",
+      "price" : 150,
+      "techlvl" : 1,
+      "3dObj" : "desk.babylon",
+      "thumbnail" : "desk.png",
+      "type" : "static"
+    }
+  ]
+}

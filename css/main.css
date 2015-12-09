@@ -1,6 +1,16 @@
-body {
-  background-image: url('../paper.jpg');
+@font-face{font-family:'cardiff'; src:url("fonts/CARDIF__.ttf")}
+@font-face{font-family:'cardiff'; src:url("fonts/CARDIF_B.ttf"); font-weight:bold}
 
+body {
+  font-family: 'cardiff';
+  background-image: url('../paper.jpg');
+}
+p {
+  text-align: justify;
+}
+h1 {
+  font-weight: bold;
+  font-size:70px;
 }
 .paper-top {
   background-repeat: no-repeat;

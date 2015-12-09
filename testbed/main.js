@@ -108,8 +108,13 @@ angular.module('game', ['ngDropdowns'])
         $scope.desks = data.audiance.topics;
         /*TODO attach these options to each desk and pop off the list when assigned.
         Make the desk mesh display what topic it is attached too.*/
-
       });
+
+      //Fetch All Topics
+      $http.get('data/objectssale.json').success(function(data) {
+        $scope.objects = data.objects;
+      });
+
 
       $scope.buyObject = function(object){
         //Deduct from sum total
@@ -199,5 +204,10 @@ angular.module('game', ['ngDropdowns'])
 .directive('audianceTab', function() {
  return {
    templateUrl: 'assets/template/audianceTab.html'
+ };
+})
+.directive('objectsTab', function() {
+ return {
+   templateUrl: 'assets/template/objectsTab.html'
  };
 })

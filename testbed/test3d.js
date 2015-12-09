@@ -70,11 +70,14 @@ var grid = [
 
 
 
-
+var ground;
 
 
 BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, function(scene) {
   sceneMaster = scene;
+  console.log(scene);
+  var ground = scene.meshes[0];
+
   // Wait for textures and shaders to be ready
   scene.executeWhenReady(function() {
 
@@ -87,7 +90,7 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
     /*  var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 0, new BABYLON.Vector3(0, 0, 0), scene);
     camera.setPosition(new BABYLON.Vector3(7.4811, 5.3437, -6.5076));
     */
-    
+
     camera.lowerBetaLimit = 0.6;
     camera.upperBetaLimit = (Math.PI / 2) * 0.99;
     camera.lowerRadiusLimit = 16;
@@ -159,49 +162,102 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
     console.log(controllerScope);
 
   });
+
+  var startingPoint;
+var currentMesh;
+
+var getGroundPosition = function () {
+    // Use a predicate to get position on the ground
+    var pickinfo = scene.pick(scene.pointerX, scene.pointerY, function (mesh) { return mesh == ground; });
+    if (pickinfo.hit) {
+        return pickinfo.pickedPoint;
+    }
+
+    return null;
+}
+
   var onPointerDown = function(evt) {
     if (evt.button !== 0) {
       return;
     }
 
-    // check if we are under a mesh
-    var pickInfo = scene.pick(scene.pointerX, scene.pointerY, function(mesh) {
-      return mesh;
-    });
-    if (pickInfo.hit) {
-      currentMesh = pickInfo.pickedMesh;
-      console.log(currentMesh);
+        // check if we are under a mesh
+        var pickInfo = scene.pick(scene.pointerX, scene.pointerY, function (mesh) { return mesh !== ground; });
+        if (pickInfo.hit) {
+            currentMesh = pickInfo.pickedMesh;
+            startingPoint = getGroundPosition(evt);
 
-      if (currentMesh.array2D) {
-        if (grid[currentMesh.array2D.i, currentMesh.array2D.j] === 1)
-          grid[currentMesh.array2D.i, currentMesh.array2D.j] = 0;
-        else
-          grid[currentMesh.array2D.i, currentMesh.array2D.j] = 1;
+            if (startingPoint) { // we need to disconnect camera from canvas
+                setTimeout(function () {
+                    camera.detachControl(canvas);
+                }, 0);
+            }
+
+                  if (currentMesh.array2D) {
+                    if (grid[currentMesh.array2D.i, currentMesh.array2D.j] === 1)
+                      grid[currentMesh.array2D.i, currentMesh.array2D.j] = 0;
+                    else
+                      grid[currentMesh.array2D.i, currentMesh.array2D.j] = 1;
 
 
-        var whiteMat = new BABYLON.StandardMaterial("texture2", scene);
-        whiteMat.diffuseColor = new BABYLON.Color3(grid[currentMesh.array2D.i, currentMesh.array2D.j], grid[currentMesh.array2D.i, currentMesh.array2D.j], grid[currentMesh.array2D.i, currentMesh.array2D.j]);
-        currentMesh.material = whiteMat;
+                    var whiteMat = new BABYLON.StandardMaterial("texture2", scene);
+                    whiteMat.diffuseColor = new BABYLON.Color3(grid[currentMesh.array2D.i, currentMesh.array2D.j], grid[currentMesh.array2D.i, currentMesh.array2D.j], grid[currentMesh.array2D.i, currentMesh.array2D.j]);
+                    currentMesh.material = whiteMat;
+                  }
+
+                  var p = BABYLON.Vector3.Project(currentMesh.position,
+                    BABYLON.Matrix.Identity(),
+                    scene.getTransformMatrix(),
+                    camera.viewport.toGlobal(engine));
+
+                  p.x = p.x / window.devicePixelRatio;
+                  p.y = p.y / window.devicePixelRatio;
+
+                  //console.log(p.x);
+                  //console.log(p.y);
+
+                  controllerScope.setPositionTest(p.x, p.y);
+
+        }
+
+
+  }
+
+  var onPointerUp = function () {
+      if (startingPoint) {
+          camera.attachControl(canvas, true);
+          startingPoint = null;
+          return;
+      }
+  }
+
+  var onPointerMove = function (evt) {
+      if (!startingPoint) {
+          return;
       }
 
-      var p = BABYLON.Vector3.Project(currentMesh.position,
-        BABYLON.Matrix.Identity(),
-        scene.getTransformMatrix(),
-        camera.viewport.toGlobal(engine));
+      var current = getGroundPosition(evt);
 
-      p.x = p.x / window.devicePixelRatio;
-      p.y = p.y / window.devicePixelRatio;
+      if (!current) {
+          return;
+      }
 
-      //console.log(p.x);
-      //console.log(p.y);
+      var diff = current.subtract(startingPoint);
+      currentMesh.position.addInPlace(diff);
 
-      controllerScope.setPositionTest(p.x, p.y);
+      startingPoint = current;
 
-    }
   }
 
   canvas.addEventListener("pointerdown", onPointerDown, false);
+     canvas.addEventListener("pointerup", onPointerUp, false);
+     canvas.addEventListener("pointermove", onPointerMove, false);
 
+     scene.onDispose = function () {
+         canvas.removeEventListener("pointerdown", onPointerDown);
+         canvas.removeEventListener("pointerup", onPointerUp);
+         canvas.removeEventListener("pointermove", onPointerMove);
+     }
 }, function(progress) {
   // To do: give progress feedback to user
 });
@@ -214,5 +270,15 @@ createReporter = function(id, pos) {
     var g = newMeshes[0].position.z + 6;
     grid[d][g] = 1;
     newMeshes[0].gameId = id;
+  });
+}
+
+addObject = function(mesh) {
+  BABYLON.SceneLoader.ImportMesh("", "assets/babylon/", mesh, sceneMaster, function(newMeshes) {
+  /*  newMeshes[0].position = pos;
+    var d = newMeshes[0].position.x + 6;
+    var g = newMeshes[0].position.z + 6;
+    grid[d][g] = 1;
+    newMeshes[0].gameId = id;*/
   });
 }
