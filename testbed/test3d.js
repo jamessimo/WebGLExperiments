@@ -71,15 +71,27 @@ var grid = [
 
 
 var ground;
-
+var startingPoint;
+var currentMesh;
 
 BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, function(scene) {
   sceneMaster = scene;
   console.log(scene);
-  var ground = scene.meshes[0];
+
+
+   //ground = scene.meshes[0];
+   //Create floor
+
+   ground = BABYLON.Mesh.CreatePlane("ground", 12, scene);
+
+   ground.rotation.x = Math.PI / 2;
+   ground.position.y = 0.0;
+   ground.isPickable = false;
 
   // Wait for textures and shaders to be ready
   scene.executeWhenReady(function() {
+
+
 
     // Attach camera to canvas inputs
     camera = scene.activeCamera;
@@ -107,7 +119,7 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
       grid[d][g] = 1;
       BABYLON.SceneLoader.ImportMesh("", "assets/babylon/", objectGrid[i].object, scene, function(newMeshes) {
 
-        newMeshes[0].position = objectGrid[lockout].pos3;
+        newMeshes[0].position = new BABYLON.Vector3(objectGrid[lockout].pos3.x,objectGrid[lockout].pos3.y,objectGrid[lockout].pos3.z);
         lockout++;
       });
 
@@ -138,6 +150,7 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
         var plane = BABYLON.Mesh.CreatePlane("plane", 1, scene);
         plane.position = new BABYLON.Vector3(i - 6, 0.19, j - 6);
         plane.rotation.x = Math.PI / 2;
+        plane.isPickable = false;
         var planeMat = new BABYLON.StandardMaterial("texture1", scene);
         planeMat.diffuseColor = new BABYLON.Color3(grid[i][j], grid[i][j], grid[i][j]);
         plane.material = planeMat;
@@ -163,18 +176,7 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
 
   });
 
-  var startingPoint;
-var currentMesh;
 
-var getGroundPosition = function () {
-    // Use a predicate to get position on the ground
-    var pickinfo = scene.pick(scene.pointerX, scene.pointerY, function (mesh) { return mesh == ground; });
-    if (pickinfo.hit) {
-        return pickinfo.pickedPoint;
-    }
-
-    return null;
-}
 
   var onPointerDown = function(evt) {
     if (evt.button !== 0) {
@@ -182,10 +184,17 @@ var getGroundPosition = function () {
     }
 
         // check if we are under a mesh
-        var pickInfo = scene.pick(scene.pointerX, scene.pointerY, function (mesh) { return mesh !== ground; });
+        var pickInfo = scene.pick(scene.pointerX, scene.pointerY, function (mesh) { return mesh !== ground});
         if (pickInfo.hit) {
-            currentMesh = pickInfo.pickedMesh;
-            startingPoint = getGroundPosition(evt);
+
+
+          currentMesh = pickInfo.pickedMesh;
+
+          if(currentMesh.isPickable){ //dont move un-pickabkes
+            startingPoint = getGroundPosition();
+          }
+
+
 
             if (startingPoint) { // we need to disconnect camera from canvas
                 setTimeout(function () {
@@ -198,7 +207,6 @@ var getGroundPosition = function () {
                       grid[currentMesh.array2D.i, currentMesh.array2D.j] = 0;
                     else
                       grid[currentMesh.array2D.i, currentMesh.array2D.j] = 1;
-
 
                     var whiteMat = new BABYLON.StandardMaterial("texture2", scene);
                     whiteMat.diffuseColor = new BABYLON.Color3(grid[currentMesh.array2D.i, currentMesh.array2D.j], grid[currentMesh.array2D.i, currentMesh.array2D.j], grid[currentMesh.array2D.i, currentMesh.array2D.j]);
@@ -236,7 +244,7 @@ var getGroundPosition = function () {
           return;
       }
 
-      var current = getGroundPosition(evt);
+      var current = getGroundPosition();
 
       if (!current) {
           return;
@@ -263,9 +271,25 @@ var getGroundPosition = function () {
 });
 
 
+ getGroundPosition = function () {
+      // Use a predicate to get position on the ground
+      console.log(sceneMaster.pointerX);
+      var pickinfo = sceneMaster.pick(sceneMaster.pointerX, sceneMaster.pointerY, function (mesh) {return mesh == ground; });
+      console.log(pickinfo);
+
+      if (pickinfo.hit) {
+          return pickinfo.pickedPoint;
+      }
+
+      return null;
+  }
+
+
 createReporter = function(id, pos) {
   BABYLON.SceneLoader.ImportMesh("", "assets/babylon/", "test-actor.babylon", sceneMaster, function(newMeshes) {
     newMeshes[0].position = pos;
+
+    //Set the actors collision info
     var d = newMeshes[0].position.x + 6;
     var g = newMeshes[0].position.z + 6;
     grid[d][g] = 1;
@@ -275,6 +299,9 @@ createReporter = function(id, pos) {
 
 addObject = function(mesh) {
   BABYLON.SceneLoader.ImportMesh("", "assets/babylon/", mesh, sceneMaster, function(newMeshes) {
+
+    startingPoint = getGroundPosition();
+
   /*  newMeshes[0].position = pos;
     var d = newMeshes[0].position.x + 6;
     var g = newMeshes[0].position.z + 6;

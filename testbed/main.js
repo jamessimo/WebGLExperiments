@@ -117,6 +117,8 @@ angular.module('game', ['ngDropdowns'])
 
 
       $scope.buyObject = function(object){
+
+        addObject('test-actor.babylon');
         //Deduct from sum total
         //Add 3D Mesh to scene and attach to mouse cursor (show a grid)
         //If object is a Desk open desk popup to assign desk to topic
