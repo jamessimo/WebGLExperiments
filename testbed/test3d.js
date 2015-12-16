@@ -74,19 +74,20 @@ var ground;
 var startingPoint;
 var currentMesh;
 
+
 BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, function(scene) {
   sceneMaster = scene;
   console.log(scene);
 
 
-   //ground = scene.meshes[0];
-   //Create floor
+  //ground = scene.meshes[0];
+  //Create floor
 
-   ground = BABYLON.Mesh.CreatePlane("ground", 12, scene);
+  ground = BABYLON.Mesh.CreatePlane("ground", 12, scene);
 
-   ground.rotation.x = Math.PI / 2;
-   ground.position.y = 0.0;
-   ground.isPickable = false;
+  ground.rotation.x = Math.PI / 2;
+  ground.position.y = 0.0;
+  ground.isPickable = false;
 
   // Wait for textures and shaders to be ready
   scene.executeWhenReady(function() {
@@ -119,7 +120,7 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
       grid[d][g] = 1;
       BABYLON.SceneLoader.ImportMesh("", "assets/babylon/", objectGrid[i].object, scene, function(newMeshes) {
 
-        newMeshes[0].position = new BABYLON.Vector3(objectGrid[lockout].pos3.x,objectGrid[lockout].pos3.y,objectGrid[lockout].pos3.z);
+        newMeshes[0].position = new BABYLON.Vector3(objectGrid[lockout].pos3.x, objectGrid[lockout].pos3.y, objectGrid[lockout].pos3.z);
         lockout++;
       });
 
@@ -183,106 +184,110 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
       return;
     }
 
-        // check if we are under a mesh
-        var pickInfo = scene.pick(scene.pointerX, scene.pointerY, function (mesh) { return mesh !== ground});
-        if (pickInfo.hit) {
+    // check if we are under a mesh
+    var pickInfo = scene.pick(scene.pointerX, scene.pointerY, function(mesh) {
+      return mesh !== ground
+    });
+    if (pickInfo.hit) {
 
 
-          currentMesh = pickInfo.pickedMesh;
+      currentMesh = pickInfo.pickedMesh;
 
-          if(currentMesh.isPickable){ //dont move un-pickabkes
-            startingPoint = getGroundPosition();
-          }
+      if (currentMesh.isPickable) { //dont move un-pickabkes
+        startingPoint = getGroundPosition();
+      }
 
 
 
-            if (startingPoint) { // we need to disconnect camera from canvas
-                setTimeout(function () {
-                    camera.detachControl(canvas);
-                }, 0);
-            }
+      if (startingPoint) { // we need to disconnect camera from canvas
+        setTimeout(function() {
+          camera.detachControl(canvas);
+        }, 0);
+      }
 
-                  if (currentMesh.array2D) {
-                    if (grid[currentMesh.array2D.i, currentMesh.array2D.j] === 1)
-                      grid[currentMesh.array2D.i, currentMesh.array2D.j] = 0;
-                    else
-                      grid[currentMesh.array2D.i, currentMesh.array2D.j] = 1;
+      if (currentMesh.array2D) {
+        if (grid[currentMesh.array2D.i, currentMesh.array2D.j] === 1)
+          grid[currentMesh.array2D.i, currentMesh.array2D.j] = 0;
+        else
+          grid[currentMesh.array2D.i, currentMesh.array2D.j] = 1;
 
-                    var whiteMat = new BABYLON.StandardMaterial("texture2", scene);
-                    whiteMat.diffuseColor = new BABYLON.Color3(grid[currentMesh.array2D.i, currentMesh.array2D.j], grid[currentMesh.array2D.i, currentMesh.array2D.j], grid[currentMesh.array2D.i, currentMesh.array2D.j]);
-                    currentMesh.material = whiteMat;
-                  }
+        var whiteMat = new BABYLON.StandardMaterial("texture2", scene);
+        whiteMat.diffuseColor = new BABYLON.Color3(grid[currentMesh.array2D.i, currentMesh.array2D.j], grid[currentMesh.array2D.i, currentMesh.array2D.j], grid[currentMesh.array2D.i, currentMesh.array2D.j]);
+        currentMesh.material = whiteMat;
+      }
 
-                  var p = BABYLON.Vector3.Project(currentMesh.position,
-                    BABYLON.Matrix.Identity(),
-                    scene.getTransformMatrix(),
-                    camera.viewport.toGlobal(engine));
+      var p = BABYLON.Vector3.Project(currentMesh.position,
+        BABYLON.Matrix.Identity(),
+        scene.getTransformMatrix(),
+        camera.viewport.toGlobal(engine));
 
-                  p.x = p.x / window.devicePixelRatio;
-                  p.y = p.y / window.devicePixelRatio;
+      p.x = p.x / window.devicePixelRatio;
+      p.y = p.y / window.devicePixelRatio;
 
-                  //console.log(p.x);
-                  //console.log(p.y);
+      //console.log(p.x);
+      //console.log(p.y);
 
-                  controllerScope.setPositionTest(p.x, p.y);
+      controllerScope.setPositionTest(p.x, p.y);
 
-        }
+    }
 
 
   }
 
-  var onPointerUp = function () {
-      if (startingPoint) {
-          camera.attachControl(canvas, true);
-          startingPoint = null;
-          return;
-      }
+  var onPointerUp = function() {
+    if (startingPoint) {
+      camera.attachControl(canvas, true);
+      startingPoint = null;
+      return;
+    }
   }
 
-  var onPointerMove = function (evt) {
-      if (!startingPoint) {
-          return;
-      }
+  var onPointerMove = function(evt) {
+    if (!startingPoint) {
+      return;
+    }
 
-      var current = getGroundPosition();
+    var current = getGroundPosition();
 
-      if (!current) {
-          return;
-      }
+    if (!current) {
+      return;
+    }
 
-      var diff = current.subtract(startingPoint);
-      currentMesh.position.addInPlace(diff);
+    var diff = current.subtract(startingPoint);
+    currentMesh.position.addInPlace(diff);
 
-      startingPoint = current;
+    startingPoint = current;
 
   }
 
   canvas.addEventListener("pointerdown", onPointerDown, false);
-     canvas.addEventListener("pointerup", onPointerUp, false);
-     canvas.addEventListener("pointermove", onPointerMove, false);
+  canvas.addEventListener("pointerup", onPointerUp, false);
+  canvas.addEventListener("pointermove", onPointerMove, false);
 
-     scene.onDispose = function () {
-         canvas.removeEventListener("pointerdown", onPointerDown);
-         canvas.removeEventListener("pointerup", onPointerUp);
-         canvas.removeEventListener("pointermove", onPointerMove);
-     }
+  scene.onDispose = function() {
+    canvas.removeEventListener("pointerdown", onPointerDown);
+    canvas.removeEventListener("pointerup", onPointerUp);
+    canvas.removeEventListener("pointermove", onPointerMove);
+  }
 }, function(progress) {
   // To do: give progress feedback to user
 });
 
 
- getGroundPosition = function () {
-      // Use a predicate to get position on the ground
-      console.log(sceneMaster.pointerX);
-      var pickinfo = sceneMaster.pick(sceneMaster.pointerX, sceneMaster.pointerY, function (mesh) {return mesh == ground; });
-      console.log(pickinfo);
+getGroundPosition = function() {
+  // Use a predicate to get position on the ground
+  console.log(sceneMaster.pointerX);
+  var pickinfo = sceneMaster.pick(sceneMaster.pointerX, sceneMaster.pointerY, function(mesh) {
+    return mesh == ground;
+  });
+  console.log(pickinfo);
 
-      if (pickinfo.hit) {
-          return pickinfo.pickedPoint;
-      }
-
-      return null;
+  if (pickinfo.hit) {
+    return pickinfo.pickedPoint;
   }
+
+  return null;
+}
 
 
 createReporter = function(id, pos) {
@@ -298,14 +303,15 @@ createReporter = function(id, pos) {
 }
 
 addObject = function(mesh) {
+
   BABYLON.SceneLoader.ImportMesh("", "assets/babylon/", mesh, sceneMaster, function(newMeshes) {
 
     startingPoint = getGroundPosition();
-
-  /*  newMeshes[0].position = pos;
-    var d = newMeshes[0].position.x + 6;
-    var g = newMeshes[0].position.z + 6;
-    grid[d][g] = 1;
-    newMeshes[0].gameId = id;*/
+    currentMesh =  newMeshes[0];
+    /*  newMeshes[0].position = pos;
+      var d = newMeshes[0].position.x + 6;
+      var g = newMeshes[0].position.z + 6;
+      grid[d][g] = 1;
+      newMeshes[0].gameId = id;*/
   });
 }
