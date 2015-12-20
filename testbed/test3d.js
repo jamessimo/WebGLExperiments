@@ -80,14 +80,9 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
   console.log(scene);
 
 
-  //ground = scene.meshes[0];
+  ground = scene.meshes[0];
+  ground.position.y = -0.05;
   //Create floor
-
-  ground = BABYLON.Mesh.CreatePlane("ground", 12, scene);
-
-  ground.rotation.x = Math.PI / 2;
-  ground.position.y = 0.0;
-  ground.isPickable = false;
 
   // Wait for textures and shaders to be ready
   scene.executeWhenReady(function() {
@@ -127,42 +122,26 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
     }
 
 
-    BABYLON.SceneLoader.ImportMesh("", "assets/babylon/", "derp.babylon", scene, function(newMeshes) {
-      console.log(newMeshes);
-      newMeshes[0].position = new BABYLON.Vector3(1, 0, 0);
-      //newMeshes[0].renderOutline = true;
-
-      newMeshes[0].outlineColor = new BABYLON.Color3(1, 0, 0.7);
-      newMeshes[0].outlineWidth = 0.07;
-      //newMeshes[0].renderOverlay = true;
-      newMeshes[0].overlayAlpha = 0.5;
-      newMeshes[0].overlayColor = new BABYLON.Color3(1, 0, 0);
-    });
-
-    BABYLON.SceneLoader.ImportMesh("", "assets/babylon/", "ww.babylon", scene, function(newMeshes) {
-
-      newMeshes[0].position = new BABYLON.Vector3(1, 1, 0);
-
-    });
-
-
     for (var i = 0; i < grid.length; i++) {
       for (var j = 0; j < grid[i].length; j++) {
-        var plane = BABYLON.Mesh.CreatePlane("plane", 1, scene);
-        plane.position = new BABYLON.Vector3(i - 6, 0.19, j - 6);
-        plane.rotation.x = Math.PI / 2;
-        plane.isPickable = false;
-        var planeMat = new BABYLON.StandardMaterial("texture1", scene);
-        planeMat.diffuseColor = new BABYLON.Color3(grid[i][j], grid[i][j], grid[i][j]);
-        plane.material = planeMat;
-        plane.array2D = {
+
+        grid[i].mesh = BABYLON.Mesh.CreatePlane("plane", 1, scene);
+        grid[i].mesh.position = new BABYLON.Vector3(i - 6, 0.0, j - 6);
+        grid[i].mesh.rotation.x = Math.PI / 2;
+        grid[i].mesh.isPickable = false;
+
+        grid[i].texture = new BABYLON.StandardMaterial("texture1", scene);
+        grid[i].texture.diffuseColor = new BABYLON.Color3(grid[i][j], grid[i][j], grid[i][j]);
+        grid[i].mesh.material = grid[i].texture;
+        grid[i].mesh.array2D = {
           'i': i,
           'j': j
         };
+
       }
     }
 
-    scene.clearColor = new BABYLON.Color3(1, 0, 0.7);
+    scene.clearColor = new BABYLON.Color3(0.8, 0.8, 0.3);
 
 
     // Once the scene is loaded, just register a render loop to render it
@@ -186,31 +165,31 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
 
     // check if we are under a mesh
     var pickInfo = scene.pick(scene.pointerX, scene.pointerY, function(mesh) {
-      return mesh !== ground
+      return (mesh !== ground && mesh.name !== "baseScene")
     });
+
     if (pickInfo.hit) {
-
-
-      currentMesh = pickInfo.pickedMesh;
-
-      if (currentMesh.isPickable) { //dont move un-pickabkes
-        startingPoint = getGroundPosition();
+      //if NOT GRID
+      if(currentMesh){
+         dropMesh();
+      } else{
+        if(pickInfo.pickedMesh.name != 'plane'){
+          selectMesh(pickInfo.pickedMesh);
+        }
       }
+    }
 
-
-
-      if (startingPoint) { // we need to disconnect camera from canvas
-        setTimeout(function() {
-          camera.detachControl(canvas);
-        }, 0);
+    // check if we are under a mesh
+    if (pickInfo.hit) {
+      if(!currentMesh){
+      //  return;
       }
-
       if (currentMesh.array2D) {
-        if (grid[currentMesh.array2D.i, currentMesh.array2D.j] === 1)
+        if (grid[currentMesh.array2D.i, currentMesh.array2D.j] === 1){
           grid[currentMesh.array2D.i, currentMesh.array2D.j] = 0;
-        else
+        }else{
           grid[currentMesh.array2D.i, currentMesh.array2D.j] = 1;
-
+        }
         var whiteMat = new BABYLON.StandardMaterial("texture2", scene);
         whiteMat.diffuseColor = new BABYLON.Color3(grid[currentMesh.array2D.i, currentMesh.array2D.j], grid[currentMesh.array2D.i, currentMesh.array2D.j], grid[currentMesh.array2D.i, currentMesh.array2D.j]);
         currentMesh.material = whiteMat;
@@ -234,29 +213,24 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
 
   }
 
-  var onPointerUp = function() {
-    if (startingPoint) {
-      camera.attachControl(canvas, true);
-      startingPoint = null;
-      return;
-    }
+  var onPointerUp = function(evt) {
+  //  console.log(evt);
   }
 
   var onPointerMove = function(evt) {
-    if (!startingPoint) {
-      return;
+
+    var pickinfo = scene.pick(scene.pointerX, scene.pointerY, function(mesh) {
+      return (mesh !== ground) // OR IF MESH IS GRID
+    });
+    if (pickinfo.hit && currentMesh) {
+
+      //console.log(pickinfo);
+      //if NOT GRID
+      //if(pickinfo.pickedMesh != currentMesh)
+      currentMesh.position = pickinfo.pickedMesh.position;
+
+      //currentMesh.position = pickinfo.pickedPoint;
     }
-
-    var current = getGroundPosition();
-
-    if (!current) {
-      return;
-    }
-
-    var diff = current.subtract(startingPoint);
-    currentMesh.position.addInPlace(diff);
-
-    startingPoint = current;
 
   }
 
@@ -306,8 +280,7 @@ addObject = function(mesh) {
 
   BABYLON.SceneLoader.ImportMesh("", "assets/babylon/", mesh, sceneMaster, function(newMeshes) {
 
-    startingPoint = getGroundPosition();
-    currentMesh =  newMeshes[0];
+    selectMesh(newMeshes[0]);
     /*  newMeshes[0].position = pos;
       var d = newMeshes[0].position.x + 6;
       var g = newMeshes[0].position.z + 6;
@@ -315,3 +288,62 @@ addObject = function(mesh) {
       newMeshes[0].gameId = id;*/
   });
 }
+
+selectMesh = function(mesh){
+  currentMesh = mesh;
+
+  currentMesh.renderOverlay = true;
+  currentMesh.overlayAlpha = 0.5;
+  currentMesh.overlayColor = new BABYLON.Color3(1, 0, 0);
+
+  currentMesh.renderOutline = false;
+  currentMesh.outlineColor = new BABYLON.Color3(1, 0, 0.7);
+  currentMesh.outlineWidth = 0.07;
+
+
+
+}
+dropMesh = function(){
+  currentMesh.renderOutline = false;
+  currentMesh.renderOverlay = false;
+  //currentMesh.array2D.i = ;
+  //currentMesh.array2D.j = ;
+
+  var d = currentMesh.position.x + 6;
+  var g = currentMesh.position.z + 6;
+  console.log(grid[d][g]);
+
+  currentMesh = undefined;
+}
+/*
+
+
+var buyMesh;
+	var buy = false;
+	var onPointerUp = function (evt) {
+		 if (buy) {
+			 buy = false;
+		 }
+	}
+	var onPointerMove = function (evt) {
+		var pickResult = scene.pick(evt.clientX, evt.clientY);
+		if (pickResult.hit) {
+			if (buy) {
+				buyMesh.position = pickResult.pickedPoint;
+			}
+
+		}
+	}
+
+function buySphere(){
+	alert(" move your mouse over the plane and watch your new sphere move!");
+	var sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene);
+	sphere.isPickable = false;
+	buyMesh = sphere;
+	buy = true;
+
+}
+ //canvas.addEventListener("pointerdown", onPointerDown, false);
+  canvas.addEventListener("pointerup", onPointerUp, false);
+  canvas.addEventListener("pointermove", onPointerMove, false);
+  */
