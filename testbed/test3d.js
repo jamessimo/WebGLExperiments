@@ -50,8 +50,6 @@ var objectGrid = [{
 ];
 
 
-
-
 var grid = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -69,11 +67,9 @@ var grid = [
 ];
 
 
-
 var ground;
 var startingPoint;
 var currentMesh;
-
 
 BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, function(scene) {
   sceneMaster = scene;
