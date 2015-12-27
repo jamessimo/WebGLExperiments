@@ -26,7 +26,7 @@ body{
   width: 1024px;
   height: 786px;
   overflow:hidden;
-  background-color: white;
+  background-color: black;
   margin: auto;
   font-family: 'TypeWriter';
   color: #333;
@@ -302,7 +302,6 @@ maingame {
 
 bottombar{
   position: absolute;
-  bottom: 0;
   display: block;
   width: 717px;
   background: url('assets/textures/leather.jpg');
@@ -330,13 +329,14 @@ bottombar .research-btn{
   background:url('assets/ui/research_sprite_btns.png');
   background-size: cover;
 }
-bottombar .audiance-btn{
-  background:url('assets/ui/audiance_sprite_btns.png');
+bottombar .buy-btn{
+  background:url('assets/ui/buy_sprite_btns.png');
   background-size: cover;
 }
 bottombar .reporters-btn:hover,
 bottombar .audiance-btn:hover,
-bottombar .research-btn:hover
+bottombar .research-btn:hover,
+bottombar .buy-btn:hover
 {
   background-position:0 -64px;
 }
@@ -345,7 +345,9 @@ bottombar .audiance-btn:active,
 bottombar .research-btn:active,
 bottombar .reporters-btn.active,
 bottombar .audiance-btn.active,
-bottombar .research-btn.active{
+bottombar .research-btn.active,
+bottombar .buy-btn.active,
+bottombar .buy-btn:active{
   background-position:0 -128px;
 }
 bottombar img{
@@ -476,10 +478,8 @@ desk{
    top: -15px;
  }
  notifications{
-   position: absolute;
-   bottom: 0;
-   height: 232px;
-   width: 309px;
+   position: relative;
+   bottom: 130px;
    left: 470px;
  }
 
@@ -500,7 +500,7 @@ desk{
 .proposals {
   width: 125px;
   height:185px;
-  left: 145px;
+  left: 0;
   position: absolute;
   transition: top 0.5s;
   top:40px;
@@ -514,7 +514,7 @@ desk{
 
 .newspaper-progress{
   position: absolute;
-  left: 275px;
+  left: 130px;
 
   transform: rotate(3deg);
   transition: top 0.5s;

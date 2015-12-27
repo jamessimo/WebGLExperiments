@@ -125,9 +125,11 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
         grid[i].mesh.position = new BABYLON.Vector3(i - 6, 0.0, j - 6);
         grid[i].mesh.rotation.x = Math.PI / 2;
         grid[i].mesh.isPickable = false;
+        grid[i].mesh.visibility = 0;
 
         grid[i].texture = new BABYLON.StandardMaterial("texture1", scene);
         grid[i].texture.diffuseColor = new BABYLON.Color3(grid[i][j], grid[i][j], grid[i][j]);
+        //grid[i].texture.alpha = 0;
         grid[i].mesh.material = grid[i].texture;
         grid[i].mesh.array2D = {
           'i': i,
@@ -151,7 +153,6 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
     console.log(controllerScope);
 
   });
-
 
 
   var onPointerDown = function(evt) {
@@ -201,6 +202,9 @@ BABYLON.SceneLoader.Load("assets/babylon/", "Office_Test.babylon", engine, funct
 
       //console.log(p.x);
       //console.log(p.y);
+//if desk
+ controllerScope.setDesk(currentMesh);
+
 
       controllerScope.setPositionTest(p.x, p.y);
 
@@ -295,9 +299,6 @@ selectMesh = function(mesh){
   currentMesh.renderOutline = false;
   currentMesh.outlineColor = new BABYLON.Color3(1, 0, 0.7);
   currentMesh.outlineWidth = 0.07;
-
-
-
 }
 dropMesh = function(){
   currentMesh.renderOutline = false;
@@ -310,6 +311,12 @@ dropMesh = function(){
   console.log(grid[d][g]);
 
   currentMesh = undefined;
+}
+
+changeColor = function(mesh){
+  var whiteMat = new BABYLON.StandardMaterial("texture3", sceneMaster);
+  whiteMat.diffuseColor = new BABYLON.Color3(0,1,0);
+  mesh.material = whiteMat;
 }
 /*
 

@@ -18,35 +18,35 @@
 
 <body ng-controller="gameController" class="">
 
-  <popup ng-show="false">
+  <popup ng-show="showArticles">
 
+    <div class="headlines">
+      <div class="content headlinepropose">
+        <div class="header">
+          <span>Finance & Business Headline by Dick Handson</span>
+        </div>
+        <h3>Headline Proposal:
+          <span class="handwrite">Man Eats Own Head!</span>
+        </h3>
 
-    <div class="content headlinepropose headlines">
-      <div class="header">
-        <span>Finance & Business Headline by Dick Handson</span>
-      </div>
-      <h3>Headline Proposal:
-        <span class="handwrite">Man Eats Own Head!</span>
-      </h3>
-
-      <h3>Author:
-        <span class="handwrite">Dick Handson</span>
-      </h3>
-      <h3>Topic:
-        <span class="handwrite">Finance & Business</span>
-      </h3>
-      <h3>Draft:
+        <h3>Author:
+          <span class="handwrite">Dick Handson</span>
+        </h3>
+        <h3>Topic:
+          <span class="handwrite">Finance & Business</span>
+        </h3>
+        <h3>Draft:
         <span class="handwrite">1</span>
         <h3>
-          <h3>Quality:
-            <progress value="60" max="100"></progress>
-          </h3>
+        <h3>Quality:
+          <progress value="60" max="100"></progress>
+        </h3>
 
-          <button>Print it!</button>
-          <button>Touch it up</button>
-          <button>Trash this</button>
+        <button>Print it!</button>
+        <button>Touch it up</button>
+        <button>Trash this</button>
+      </div>
     </div>
-
   </popup>
 
   <popup ng-show="alert">
@@ -68,7 +68,7 @@
       <div class="paper">
         <div class="content">
           <div class="inner">
-            <h3>The Morning Herald</h3>
+            <h3>Hello Leighton</h3>
           </div>
         </div>
       </div>
@@ -121,9 +121,16 @@
   </sidebar>
   <div id="canvas-wrap">
 
-    <div id="2d3d" style="position:absolute; width:50px;height:50px;display:block;
-    transform: translate(420px,31px);background:red;"></div>
+    <div id="deskOptions" style="position:absolute; width:250px;height:100px;display:block;
+      transform: translate(420px,31px);background:#D6C693; padding:10px;">
+      Set Desk Type:
+      <div dropdown-select="availableDesks" dropdown-item-label="label" dropdown-onchange="setDesk(selected)">
+      </div>
+      Current Reporter:
+    </div>
     <canvas id="renderCanvas"></canvas>
+
+
   </div>
 
 
@@ -161,7 +168,7 @@
 
   <notifications>
 
-    <div class="proposals" ng-click="showArtials = true">
+    <div class="proposals" ng-click="showArticles = true">
       <notification ng-show="articles.length">
         <span>{{articles.length}}</span>
       </notification>
@@ -195,7 +202,7 @@
     </div>
 
     <div class="col-2-12">
-      <div class="btn newspaper-btn" ng-click="bottombar = 'newspaper'"></div>
+      <div class="btn buy-btn" ng-click="bottombar = 'newspaper'"></div>
     </div>
     <div class="col-2-12">
       <div class="btn research-btn" ng-click="bottombar = 'research'"></div>

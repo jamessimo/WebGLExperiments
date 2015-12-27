@@ -34,7 +34,6 @@ angular.module('game', ['ngDropdowns'])
             /*TODO Make this ref a mesh*/
 
             console.log(topic);
-
             var currentDesk = $filter('filter')($scope.desks, function (d) {return d.id === topic.id;})[0];
 
             this.desk = currentDesk;
@@ -60,11 +59,17 @@ angular.module('game', ['ngDropdowns'])
               'writing' : true,
               'progress' : 0
             }
+
           }
           reporter.create3D = function(){
             createReporter(this.id,new BABYLON.Vector3(reporter.lkPos))
           },
           reporter.update = function(){
+
+            //If reporter is at a desk with a topic, then he can add to the papaer and work on own topic
+            //Get work speed work speed is
+            //Get skill
+            //if add paper, fire off paper event from reporter pos to paper pos
 
             if($scope.paperProgress > 0){
               if((Math.round(genrand_real2() * Math.pow(10, 8)) / Math.pow(10, 8)) > 0.98990139){
@@ -80,6 +85,7 @@ angular.module('game', ['ngDropdowns'])
               this.article.progress++;
 
               if(this.article.progress >= 300){
+                //pause the game to show?
                 $scope.articles.push(this.article);
                 this.article.writing = false;
               }
@@ -99,13 +105,19 @@ angular.module('game', ['ngDropdowns'])
       $scope.setPositionTest = function(x,y){
         //fire animation
         //Fetch position
-
-        //  $('#2d3d').css( "transform", "translate(" + x + 'px' + "," + y + 'px' + ")" );
+        $('#deskOptions').css( "transform", "translate(" + x + 'px' + "," + y + 'px' + ")" );
       }
       //Fetch All Topics
       $http.get('data/audiance.json').success(function(data) {
         $scope.audiance = data.audiance;
         $scope.desks = data.audiance.topics;
+        $scope.availableDesks = [];
+
+        $scope.desks.forEach(function (desk) {
+          desk.assigned = false;
+          $scope.availableDesks.push(desk);
+        });
+
         /*TODO attach these options to each desk and pop off the list when assigned.
         Make the desk mesh display what topic it is attached too.*/
       });
@@ -115,7 +127,12 @@ angular.module('game', ['ngDropdowns'])
         $scope.objects = data.objects;
       });
 
+      $scope.setDesk = function(mesh){
+      //  $scope.availableDesks.pop();
+          console.log(mesh);
 
+          changeColor(mesh);
+      }
       $scope.buyObject = function(object){
 
         addObject('test-actor.babylon');
@@ -123,6 +140,10 @@ angular.module('game', ['ngDropdowns'])
         //Add 3D Mesh to scene and attach to mouse cursor (show a grid)
         //If object is a Desk open desk popup to assign desk to topic
           //setDeskType();
+      }
+      $scope.paperAdd = function(x,y){
+        //Fetch position
+        $('#deskOptions').css( "transform", "translate(" + x + 'px' + "," + y + 'px' + ")" );
       }
 
       //Load scean
