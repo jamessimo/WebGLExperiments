@@ -1,19 +1,21 @@
 {
   "name": "The James Herald",
-  "startdate" : 2345678987,
-  "currentdate" : 2122212,
+  "startdate" : -617882860,
+  "currentdate" : -617882860,
   "poltical" : {
   	"left" : 0,
   	"right": 40
   },
-  "money":{
+  "readers" : 30000,
+  "money": {
+    "current" : 90000000,
     "net" : 1000,
     "gross" : 10000,
     "taxes" : 300
   },
   "price": 0.25,
   "rank" : 50,
-  "style": 01,
+  "style": "01",
   "history" : [
     {
       "headline" : "First Headline",

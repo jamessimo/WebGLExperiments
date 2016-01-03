@@ -18,32 +18,44 @@
 
 <body ng-controller="gameController" class="">
 
+  <popup ng-show="showPaper">
+    <newspaper>
+      <div class="content">
+        <h1>{{currentPaper.headline}}</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget dui metus. Nullam porttitor leo metus, ut porta felis aliquet ut. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam mattis neque arcu, ac venenatis neque finibus ac. Phasellus suscipit pulvinar lacus, eget ultrices felis fringilla sed. Curabitur eget nunc eget diam fermentum tempor non eget purus. Integer et accumsan arcu, scelerisque tempus mi. Maecenas ultricies ac eros non condimentum. Nam sagittis faucibus convallis. Morbi venenatis erat id aliquam pretium. Proin ut ante laoreet, ultrices elit a, gravida arcu. Suspendisse sagittis pellentesque est. Aliquam a mi lorem. In sem dui, pellentesque non lorem id, auctor ultricies lorem. Fusce et rutrum neque.</p>
+      </div>
+    </newspaper>
+  </popup>
   <popup ng-show="showArticles">
 
     <div class="headlines">
-      <div class="content headlinepropose">
+      <div ng-repeat="a in articles" class="content headlinepropose">
+
         <div class="header">
-          <span>Finance & Business Headline by Dick Handson</span>
+          <span>{{a.topic.label}} Headline by {{a.author.firstName}}</span>
         </div>
         <h3>Headline Proposal:
-          <span class="handwrite">Man Eats Own Head!</span>
+          <span class="handwrite">{{a.headline}}</span>
         </h3>
 
         <h3>Author:
-          <span class="handwrite">Dick Handson</span>
+          <span class="handwrite">{{a.author.firstName}} {{a.author.secondName}}</span>
         </h3>
         <h3>Topic:
-          <span class="handwrite">Finance & Business</span>
+          <span class="handwrite">{{a.topic.label}}</span>
         </h3>
         <h3>Draft:
-        <span class="handwrite">1</span>
-        <h3>
-        <h3>Quality:
-          <progress value="60" max="100"></progress>
-        </h3>
+        <span class="handwrite">{{a.draft}}</span>
 
-        <button>Print it!</button>
-        <button>Touch it up</button>
+        <h3>Quality:
+          <progress value="{{a.quality}}" max="100"></progress>
+        </h3>
+        Political:
+        <progress class="pol-left" value="{{a.politcal.right}} " max="100"></progress>
+        <progress class="pol-right" value="{{a.politcal.left}} " max="100"></progress>
+
+        <button ng-click="a.author.printArticle()">Print it!</button>
+        <button ng-click="a.author.touchUp()">Touch it up</button>
         <button>Trash this</button>
       </div>
     </div>
@@ -68,7 +80,7 @@
       <div class="paper">
         <div class="content">
           <div class="inner">
-            <h3>Hello Leighton</h3>
+            <h3>{{thepaper.name}}</h3>
           </div>
         </div>
       </div>
@@ -77,8 +89,8 @@
     </div>
     <div class="col-2-12">
       <div class="item">
-        <div class="inner">
-          <i class="fa fa-dollar"></i> 9,999,999
+        <div class="inner" style="white-space: nowrap;">
+          <i class="fa fa-dollar"></i> {{thepaper.money.current | number}}
         </div>
       </div>
     </div>
@@ -94,14 +106,14 @@
     <div class="col-2-12">
       <div class="item">
         <div class="inner">
-          <i class="fa fa-users"></i> 24,555
+          <i class="fa fa-users"></i> {{thepaper.readers | number}}
         </div>
       </div>
     </div>
     <div class="col-3-12">
       <div class="item">
         <div class="inner">
-          <i class="fa fa-circle"></i> NOV 1978
+          <i class="fa fa-circle"></i> {{thepaper.currentdate | date:'MMM yyyy'}}
         </div>
       </div>
     </div>
@@ -146,25 +158,7 @@
       </span>
     </desk>
 
-
-    <div class=" col-4-12" ng-show="publishedArticle" style="text-align:center">
-      <h1>Published Article
-        <cite>{{publishedArticle.headline}}</cite>
-      </h1>
-
-      {{publishedArticle.progress}}%
-      <br> Quality = {{publishedArticle.quality}}/{{publishedArticle.total}} - Audiance expect = {{audiance.expectedQuality}}
-      <br>
-
-
-      <button></button>
-      {{publishedArticle.sold}} units sold
-      <br> {{publishedArticle.profit | currency}} profit
-
-    </div>
-
   </maingame>
-
 
   <notifications>
 
@@ -174,7 +168,7 @@
       </notification>
     </div>
 
-    <div class="newspaper-progress" ng-class="{'peek': peek}">
+    <div class="newspaper-progress" ng-class="{'peek': peek}" ng-click="showPaper = true;">
       <div class="newspaper-progress-front" ng-style="clipProgress"></div>
     </div>
 
@@ -218,7 +212,7 @@
 
 <script src="MersenneTwister19937.js"></script>
 
-<script src="test3d.js"></script>
+<script src="test3dxx.js"></script>
 
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -226,9 +220,5 @@
 
 <script src="bower_components/tooltipster/js/jquery.tooltipster.min.js"></script>
 <script src="main.js"></script>
-
-
-
-
 
 </html>

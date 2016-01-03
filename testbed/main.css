@@ -15,7 +15,10 @@
   font-family:'Newspaper1';
   src:url("assets/fonts/OldeEnglish.ttf");
 }
-
+@font-face{
+  font-family:'blurType';
+  src:url("assets/fonts/ThePrintedWord.otf");
+}
 
 
 
@@ -539,7 +542,17 @@ desk{
 .newspaper-progress-back{
 }
 
-
+newspaper .content{
+  background: url('assets/textures/newspaper1.jpg');
+}
+newspaper h1 {
+  font-family: Newspaper1;
+}
+newspaper p {
+  font-family: blurType;
+  text-align: justify;
+  font-size: 32%;
+}
 
 
 tabs {

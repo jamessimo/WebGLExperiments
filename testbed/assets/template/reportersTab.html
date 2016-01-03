@@ -34,8 +34,8 @@
     </br>
 
     Currently:
-    <span ng-if="r.article">Writing an article</span>
-    <span ng-if="!r.article">Idle</span>
+    <span ng-if="r.article">{{r.article.progress}}%</span>
+    <span>{{r.currentState}}</span>
 
     <!-- ng-change="r.assignDesk(topic)
 

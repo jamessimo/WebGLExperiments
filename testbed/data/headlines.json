@@ -1,0 +1,83 @@
+[
+  {
+    "id": 0,
+    "label": "Finance & Business",
+    "headlines": [
+      'Markets continue to grow',
+      'Chipmonkes concidered as new currency',
+      'Inflation on the rise',
+      'Do mice pay taxes?'
+    ]
+  },
+  {
+    "id": 1,
+    "label": "World Affairs",
+    "healines": [
+      "G8 summit awards leaders with G8 planes",
+      "Europe to see 100% bond villan growth in coming months",
+      "4 out of 10 countries admit to having sold its nukes",
+      "Hostage crisis breaks out over porrage shortage"
+    ]
+  },
+  {
+    "id": 2,
+    "label": "Politics",
+    "healines": [
+      "Local mayor admits he cant read",
+      "Leftist handbook accidently switched with rightwind pamflet",
+      "GET EM OUT - says head of state",
+      "Should Primates get the vote?"
+    ]
+  },
+  {
+    "id": 3,
+    "label": "Sports",
+    "headlines": [
+      "Golf and Darts tied for most boring spectactor sports awards",
+      "Footballer claiming that $90,000,000 a week is poverty",
+      "Man kicks ball in net",
+      "Olympic Commitie debate adding programming as an olympic event"
+    ]
+  },
+
+  {
+    "id": 7,
+    "label": "Entertainment",
+    "headlines": [
+      "Hollywood actor claimes his oscer was made of choclate",
+      "Pre-teen heart throub found kicking sand into childerns faces launches new t-shirt line",
+      "Is TV dumb? The TV industy says no. ",
+      "Screen writers guild strike, produces buy scripts of criegs list"
+    ]
+  },
+  {
+    "id": 4,
+    "label": "Culture & Arts",
+    "headlines": [
+      "Priceless artwork found to be a 12 year olds art homword",
+      "Coffee enamas added to cultral heritige protection ",
+      "Theaters sees 2000% boost in patrons as nude balete comes to town",
+      "Abstract art officaly debunked by sciantists "
+    ]
+  },
+  {
+    "id": 5,
+    "label": "Science & Technology",
+    "headlines": [
+      "Computer that learns from internet kills self in less than 14 microseconds ",
+      "Green Goo proven to give superhuman streangth 1 out of 18 times",
+      "Homemade moon shine used as rocket fuel, hillbilly aerospace industy takes off",
+      "Pocket Calculaters to be censored for showing indecnet images to childen"
+    ]
+  },
+  {
+    "id": 6,
+    "label": "Health & Education",
+    "headlines": [
+      "I give up, your all too stupid - says head of education",
+      "Mirical juice found to be just water and LSD",
+      "Grades grow as children get smarter at cheating",
+      "Doctors pation goverment to allow them to refuse tretment to people who look icky"
+    ]
+  }
+]
