@@ -23,6 +23,10 @@ angular.module('game', ['ngDropdowns'])
         'headline' : ""
       }
 
+      $http.get('data/headlines.json').success(function(data) {
+        $scope.headlines = data;
+      });
+
       $http.get('data/thepaper.json').success(function(data) {
         $scope.thepaper = data;
         //604800 one week
@@ -63,6 +67,7 @@ angular.module('game', ['ngDropdowns'])
 
             this.busy = true;
             this.currentState = "Writing a new article";
+
             //Writing skills controls how much you can fuck up your skill Writing
             this.article = {
               'author' : reporter,
@@ -79,6 +84,9 @@ angular.module('game', ['ngDropdowns'])
               'progress' : 0,
               'draft' : 1
             }
+            var curHeadline = $scope.getArrayEl($scope.headlines,topic.id);
+          this.article.headline = curHeadline.headlines[randomInt(0, curHeadline.headlines.length)];
+          console.log(this.article)
 
           },
           reporter.touchUp = function() {

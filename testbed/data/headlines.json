@@ -3,16 +3,16 @@
     "id": 0,
     "label": "Finance & Business",
     "headlines": [
-      'Markets continue to grow',
-      'Chipmonkes concidered as new currency',
-      'Inflation on the rise',
-      'Do mice pay taxes?'
+      "Markets continue to grow",
+      "Chipmonkes concidered as new currency",
+      "Inflation on the rise",
+      "Do mice pay taxes?"
     ]
   },
   {
     "id": 1,
     "label": "World Affairs",
-    "healines": [
+    "headlines": [
       "G8 summit awards leaders with G8 planes",
       "Europe to see 100% bond villan growth in coming months",
       "4 out of 10 countries admit to having sold its nukes",
@@ -22,7 +22,7 @@
   {
     "id": 2,
     "label": "Politics",
-    "healines": [
+    "headlines": [
       "Local mayor admits he cant read",
       "Leftist handbook accidently switched with rightwind pamflet",
       "GET EM OUT - says head of state",

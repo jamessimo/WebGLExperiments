@@ -18,11 +18,31 @@
 
 <body ng-controller="gameController" class="">
 
+
+  <popup ng-show="false">
+    <sales>
+      <div class="content">
+        <h1>Sales</h1>
+        <p>Printed: 60,333 units</p>
+        <p>Units Bought: 53,012 units</p>
+        <p>Audiance like: 42k</p>
+        <p>Sales Gross: $44,987</p>
+        <p>Audiance growth: +3k </p>
+
+
+        <button ng-click="">Next Day!</button>
+
+      </div>
+    </sales>
+  </popup>
+
   <popup ng-show="showPaper">
     <newspaper>
       <div class="content">
         <h1>{{currentPaper.headline}}</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget dui metus. Nullam porttitor leo metus, ut porta felis aliquet ut. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam mattis neque arcu, ac venenatis neque finibus ac. Phasellus suscipit pulvinar lacus, eget ultrices felis fringilla sed. Curabitur eget nunc eget diam fermentum tempor non eget purus. Integer et accumsan arcu, scelerisque tempus mi. Maecenas ultricies ac eros non condimentum. Nam sagittis faucibus convallis. Morbi venenatis erat id aliquam pretium. Proin ut ante laoreet, ultrices elit a, gravida arcu. Suspendisse sagittis pellentesque est. Aliquam a mi lorem. In sem dui, pellentesque non lorem id, auctor ultricies lorem. Fusce et rutrum neque.</p>
+        <button ng-click=""> To the presses! </button>
+
       </div>
     </newspaper>
   </popup>
@@ -212,7 +232,7 @@
 
 <script src="MersenneTwister19937.js"></script>
 
-<script src="test3dxx.js"></script>
+<script src="test3d.js"></script>
 
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
